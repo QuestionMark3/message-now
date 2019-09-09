@@ -1,19 +1,27 @@
-<a class="item">
-  Chatroom
-</a>
-<a class="item">
-  Messages
-</a>
+<!-- Left hand options -->
+<%= link_to "Chatroom", root_path, class: "item" %>
+<%= link_to "Messages", "", class: "item" %>
+<!-- /Left hand options -->
+
+<!-- Right hand options -->
 <div class="right menu">
+
+  <!-- Dropdown -->
   <div class="ui dropdown item">
     Account <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item">Log out</a>
-      <a class="item">Log in</a>
-      <a class="item">Sign up</a>
+      <%= link_to "Log out", "", class: "item" %>
+      <%= link_to "Log in", login_path, class: "item" %>
+      <%= link_to "Sign up", "", class: "item" %>
     </div>
   </div>
+  <!-- /Dropdown -->
+
+  <!-- Sign up button -->
   <div class="item">
-      <div class="ui primary button">Sign Up</div>
+  <%= link_to "Sign up", "", class: "ui primary button" %> 
   </div>
+  <!-- /Sign up button -->
+
 </div>
+<!-- /Right hand options -->

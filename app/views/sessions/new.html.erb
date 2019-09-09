@@ -1,1 +1,69 @@
-<h1>Login Page</h1>
+<!-- Title -->
+<h1 align="center">
+	Welcome to Message Me - <em>a complete Chat App</em>
+</h1>
+<!-- /Title -->
+
+<!-- Icon -->
+<h4 class="ui center aligned medium icon header">
+  <i class="circular inverted blue address card icon"></i>
+  Log in to continue
+</h4>
+<!-- /Icon -->
+
+<!-- Panel -->
+<div class="ui placeholder segment">
+	
+	<!-- Content -->
+  <div class="ui two column very relaxed stackable grid">
+
+		<!-- Login form -->
+    <div class="column">
+    <div class="ui form">
+			
+			<!-- Username -->
+      <div class="field">
+        <label>Username</label>
+        <div class="ui left icon input">
+          <input type="text" placeholder="Username">
+          <i class="user icon"></i>
+        </div>
+      </div>
+      <!-- /Username -->
+
+			<!-- Password -->
+      <div class="field">
+        <label>Password</label>
+        <div class="ui left icon input">
+          <input type="password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <!-- /Password -->
+
+      <%= link_to "Login", "", class: "ui blue submit button" %> <!-- Login button -->
+
+    </div>
+    </div>
+    <!-- /Login form -->
+		
+		<!-- Sign up button -->
+    <div class="middle aligned column">
+		<%= link_to "", class: "ui big blue button" do %>
+			<i class="signup icon"></i>
+			Sign Up
+		<% end %>
+    </div>
+    <!-- /Sign up button -->
+
+  </div>
+  <!-- /Content -->
+
+	<!-- Divider -->
+  <div class="ui vertical divider">
+    Or
+  </div>
+  <!-- /Divider -->
+
+</div>
+<!-- /Panel -->
