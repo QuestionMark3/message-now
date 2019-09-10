@@ -7,3 +7,12 @@
 .chatbox {
 	height: 450px;
 }
+
+#messages {
+	height: 15em;
+	overflow: auto;
+}
+
+.content .field .input .button {
+		display: none;
+	}
