@@ -22,17 +22,19 @@
 
 		<!-- Form -->
 		<div class="extra content">
-		<form class="ui reply form">
-		<div class="field">
-		<div class="ui fluid icon input">
+		<%= form_for(@message, html: {class: "ui reply form" , role: "form"}, url: message_path) do |f| %>
+			<div class="field">
+			<div class="ui fluid action input">
 
-			<input type="text" placeholder="Enter a message...">
+				<%= f.text_field :body %>
 
-			<i class="bordered inverted blue edit icon"></i>
+				<%= f.button class: "blue ui button" do %>
+					<i class="edit icon"></i>
+				<% end %>
 
-		</div>
-		</div>
-		</form>
+			</div>
+			</div>
+		<% end %>
 		</div>
 		<!-- /Form -->
 
@@ -65,4 +67,4 @@
 	<!-- /Verticle menu options -->
 
 </div>
-<!-- /Chatroom body
+<!-- /Chatroom body -->
