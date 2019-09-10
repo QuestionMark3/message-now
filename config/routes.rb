@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
 
+	# Chatroom route
 	root 'chatroom#index'
+
+	# Session routes
 	get 'login' => 'sessions#new'
 	post 'login' => 'sessions#create'
 	delete 'logout' => 'sessions#destroy'
+
+	# Message route
 	post 'message' => 'messages#create'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+	# Channel route
+	mount ActionCable.server, at: '/cable'
+
 end
