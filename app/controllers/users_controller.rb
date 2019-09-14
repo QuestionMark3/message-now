@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 			flash[:success] = "Welcome to Message Now, #{@user.username}"
 			redirect_to root_path
 		else
+			flash[:error] = 'There was a problem with your sign up information'
 			redirect_to signup_path
 		end
 	end

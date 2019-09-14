@@ -1,11 +1,11 @@
 @import "semantic-ui";
 
 #navbar {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .chatbox {
-	height: 450px;
+	height: 400px;
 }
 
 #messages {
@@ -21,6 +21,18 @@
 	opacity: 0.5;
 }
 
+#chatroom-header {
+	margin-top: 5px;
+}
+
+#header {
+	margin-top: 20px;
+}
+
 #divider {
 	color: #777;
+}
+
+#messages-wrapper {
+	min-height: 45px;
 }
