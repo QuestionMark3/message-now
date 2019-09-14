@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 	# Chatroom route
 	root 'chatroom#index'
 
+	#User route
+	get 'signup' => 'users#new'
+	post 'users' => 'users#create'
+
 	# Session routes
 	get 'login' => 'sessions#new'
 	post 'login' => 'sessions#create'

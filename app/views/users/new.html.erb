@@ -1,0 +1,44 @@
+<!-- Segment -->
+<div class="ui one column stackable page centered grid">
+
+  <!-- Chatroom title -->
+  
+  <!-- /Chatroom title -->
+
+  <div class="ui row">
+  <span class="ui center aligned medium icon header">
+    <i class="circular inverted blue user icon"></i>
+    Sign up
+  </span>
+  </div>
+
+  <!-- Form -->
+  <div class="ui row">
+  <div class="column twelve wide">
+  <div class="ui segment">
+  <%= form_for(@user, :html => {class: "ui big form"}) do |f| %>
+
+  	<!-- Username -->
+    <div class="required field">
+      <%= f.label :username, "Username" %>
+      <%= f.text_field :username, placeholder: "Username", autofocus: "true" %>
+    </div>
+    <!-- /Username -->
+
+  	<!-- Password -->
+    <div class="required field">
+      <%= f.label :password, "Password" %>
+      <%= f.password_field :password, placeholder: "Password" %>
+    </div>
+    <!-- /Password -->
+
+    <%= f.submit "Sign Up", class: "ui big primary button" %> <!-- Submit -->
+
+  <% end %>
+  </div>
+  </div>
+  </div>
+  <!-- /Form -->
+
+</div>
+<!-- /Segment -->
