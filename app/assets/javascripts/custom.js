@@ -16,7 +16,6 @@ submit_message = () => {
 		if (event.which == 13) {
 			$('button').click();
 			event.target.value = "";
-			scroll_bottom(true);
 		};
 	});
 };

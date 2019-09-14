@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			flash[:success] = "Welcome to Message Now, #{@user.username}"
+			session[:user_id] = @user.id
 			redirect_to root_path
 		else
 			flash[:error] = 'There was a problem with your sign up information'
