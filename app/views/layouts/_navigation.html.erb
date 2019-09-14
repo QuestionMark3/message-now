@@ -1,36 +1,31 @@
-<!-- Left hand options -->
-<%= link_to "Chatroom", root_path, class: "item" %>
-<%= link_to "Messages", "", class: "item" %>
-<!-- /Left hand options -->
+<!-- Header -->
+<div class="header item">
+  <b>Message</b>
+  <i class="fitted comment alternate icon"></i>
+  <b>Now</b>
+</div>
+<!-- /Header -->
 
 <!-- Right hand options -->
 <div class="right menu">
 
-  <!-- Dropdown -->
+  <!-- Logout -->
   <% if logged_in? %>
-    <div class="ui dropdown item">
-
-      Account <i class="dropdown icon"></i>
-
-      <div class="menu">
-        <%= link_to "Log in", login_path, class: "item" %>
-        <%= link_to "Log out", logout_path, method: :delete, class: "item" %>
-        <!--%= link_to "Sign up", "", class: "item" %-->
-      </div>
-      
+    <div class="item">
+      <%= link_to "Log out", logout_path, method: :delete, class: "ui inverted grey button" %>
     </div>
   <% end %>
-  <!-- /Dropdown -->
+  <!-- /Logout -->
 
   <!-- Sign up button -->
   <% if !logged_in? %>
 
     <div class="item">
-    <%= link_to "Log in", login_path, class: "ui primary button" %>
+    <%= link_to "Log in", login_path, class: "ui inverted grey button" %>
     </div>
 
     <div class="item">
-    <%= link_to "Sign up", signup_path, class: "ui primary button" %> 
+    <%= link_to "Sign up", signup_path, class: "ui inverted grey button" %> 
     </div>
 
   <% end %>
