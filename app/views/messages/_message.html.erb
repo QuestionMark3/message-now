@@ -1,9 +1,32 @@
+<!-- Previous message user_id -->
+<% prev_msg = Message.find_by(id: message.id-1) %>
+<% prev_msg_user = prev_msg && prev_msg.user %>
+<% prev_msg_user_id = prev_msg_user && prev_msg_user.id %>
+<!-- /Previous message user_id -->
+
+<!-- Message -->
 <div class="event">
 <div class="content">
 <div class="summary">
+	
+	<!-- Message user -->
+	<small class="user">
+		<%= message.user.username %>
+	</small>
+	<!-- /Message user -->
+	
+	<!-- Message body -->
+	<div class="ui grey secondary inverted compact segment">
+		<%= message.body %>
+	</div>
+	<!-- /Message body -->
+	
+	<!-- Hidden data -->
+	<span class="hidden-msg-user-id"><%= message.user_id %></span>
+	<span class='hidden-prev-msg-user-id'><%= prev_msg_user_id %></span>
+	<!-- /Hidden data -->
 
-  <em><%= message.user.username %></em>: <%= message.body %>
-  
 </div>
 </div>
 </div>
+<!-- /Message -->

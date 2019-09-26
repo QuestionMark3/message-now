@@ -11,6 +11,8 @@
 #messages {
 	height: 15em;
 	overflow: auto;
+	padding: 30px;
+
 }
 
 .content .field .input .button {
@@ -35,4 +37,23 @@
 
 #messages-wrapper {
 	min-height: 45px;
+}
+
+.user {
+	display: block;
+	color: #888;
+}
+
+.content .summary .segment {
+	font-size: 1.2rem;
+	line-height: 1.8rem;
+	margin-top: 0px;
+	padding: 5px 10px;
+	max-width: 500px;
+	overflow-wrap: break-all;
+    word-wrap: break-all;
+}
+
+#hidden-user-id, .hidden-msg-user-id, .hidden-prev-msg-user-id {
+	display: none;
 }
