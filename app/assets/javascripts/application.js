@@ -15,3 +15,19 @@
 //= require turbolinks
 //= require semantic-ui
 //= require_tree .
+
+
+// jQuery to be executed after DOM loads
+$(document).on('turbolinks:load', () => {
+	// Flash messages
+	message_close();
+
+	// Login page
+	form_opacity();
+	equal_height();
+
+	// Chatroom
+	submit_message();
+	message_style();
+	scroll_bottom(false);
+})
