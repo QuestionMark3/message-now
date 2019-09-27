@@ -57,3 +57,13 @@
 #hidden-user-id, .hidden-msg-user-id, .hidden-prev-msg-user-id {
 	display: none;
 }
+
+.ui.horizontal.divider {
+	color: #888;
+	font-weight: normal;
+	font-size: small;
+}
+
+.ui.horizontal.divider .date {
+	font-weight: bold;
+}

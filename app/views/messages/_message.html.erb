@@ -1,8 +1,34 @@
-<!-- Previous message user_id -->
-<% prev_msg = Message.find_by(id: message.id-1) %>
-<% prev_msg_user = prev_msg && prev_msg.user %>
-<% prev_msg_user_id = prev_msg_user && prev_msg_user.id %>
-<!-- /Previous message user_id -->
+<% prev_msg = Message.find_by(id: message.id-1) %> <!-- Previous message -->
+<% msg_offset = message.created_at - prev_msg.created_at if prev_msg %> <!-- Time since last messaege -->
+
+<!-- Datetime -->
+<% if !msg_offset || msg_offset >= 1.hour %>
+	<% datetime = message.created_at.getlocal %>
+	<% now = Time.current.getlocal %>
+
+	<div align="center" class="ui horizontal divider">
+
+		<!-- Date -->
+		<span class="date">
+			<% if datetime.to_date == now.to_date %>
+				Today
+			<% elsif datetime.to_date == now.to_date - 1.day %>
+				Yesterday
+			<% elsif datetime.to_date > datetime.to_date - 7.days %>
+				<%= datetime.strftime("%A") %>
+			<% elsif datetime.year == now.year %>
+				<%= datetime.strftime("%a, %b %d,") %>
+			<% else %>
+				<%= datetime.strftime("%b %d, %Y,") %>
+			<% end %>
+		</span>
+		<!-- /Date -->
+
+		<%= datetime.strftime("%l:%M %p") %> <!-- Time -->
+
+	</div>
+<% end %>
+<!-- /Datetime -->
 
 <!-- Message -->
 <div class="event">
@@ -23,6 +49,8 @@
 	
 	<!-- Hidden data -->
 	<span class="hidden-msg-user-id"><%= message.user_id %></span>
+	<% prev_msg_user = prev_msg && prev_msg.user %>
+	<% prev_msg_user_id = prev_msg_user && prev_msg_user.id %>
 	<span class='hidden-prev-msg-user-id'><%= prev_msg_user_id %></span>
 	<!-- /Hidden data -->
 
