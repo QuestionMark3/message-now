@@ -16,6 +16,18 @@
 //= require semantic-ui
 //= require_tree .
 
+// Global functions
+format = () => {
+	var format_block = $('#format');
+	var visible = format_block.is(':visible')
+
+	if (visible) {
+		format_block.css('display', 'none');
+	}
+	else {
+		setTimeout(() => {format_block.css('display', 'block')}, 500);
+	}
+}
 
 // jQuery to be executed after DOM loads
 $(document).on('turbolinks:load', () => {
@@ -30,4 +42,9 @@ $(document).on('turbolinks:load', () => {
 	submit_message();
 	message_style();
 	scroll_bottom(false);
+
+	// Actions
+	new_chatroom_btn();
+	user_checkbox();
+	submit_chatroom();
 })

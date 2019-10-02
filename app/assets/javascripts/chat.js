@@ -1,12 +1,13 @@
 // Bind 'enter' key to 'submit' button and clear textfield
 submit_message = () => {
 	$('#message_body').on('keydown', (event) => {
-		if (event.which == 13) {
-			$('button').click();
+		if (event.target == document.activeElement && event.which == 13) {
+			$('#msg-form').click();
 			event.target.value = "";
 		};
 	});
 };
+
 
 // Style messages
 message_style = () => {

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 	# Chatroom route
 	root 'chatrooms#index'
+	post 'chatroom' => 'chatrooms#create'
 
 	#User route
 	get 'signup' => 'users#new'

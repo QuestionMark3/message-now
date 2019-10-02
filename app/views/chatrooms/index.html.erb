@@ -22,13 +22,15 @@
 
 		<!-- Form -->
 		<div class="extra content">
-		<%= form_for(@message, html: {class: "ui reply form" , role: "form"}, url: message_path, remote: true) do |f| %>
+		<%= form_for(@message, 	html: {class: "ui reply form" , role: "form"},
+														url: message_path,
+														remote: true) do |f| %>
 			<div class="field">
 			<div class="ui fluid input">
 
 				<%= f.text_field :body, placeholder: "Enter message" %>
 
-				<%= f.button class: "button" %>
+				<%= f.button class: "button", id:"msg-form" %>
 
 			</div>
 			</div>
@@ -42,24 +44,28 @@
 
 	<!-- Verticle menu options -->
 	<div class="four wide column">
-	<div class="ui fluid raised card chatbox">
-	<div class="content">
-	<div class="ui inverted vertical menu">
+	<div class="ui fluid raised card chatbox" id='side-options'>
+	
+		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users} %> <!-- New chatroom menu -->
 
-	  <a class="active item">
-	    Home
-	  </a>
+		<div class="content" id="format"></div> <!-- Div for fixing formatting -->
 
-	  <a class="item">
-	    Messages
-	  </a>
+		<!-- Actions -->
+		<div class="ui fluid blue vertical buttons">
 
-	  <a class="item">
-	    Friends
-	  </a>
+		  <a class="ui button" id="view">
+		  	<i class="sitemap icon"></i>
+		    Chatrooms
+		  </a>
 
-	</div>
-	</div>
+		  <a class="ui button" id="new">
+		  	<i class="tv icon"></i>
+		    New Chatroom
+		  </a>
+
+		</div>
+		<!-- /Actions -->
+
 	</div>
 	</div>
 	<!-- /Verticle menu options -->

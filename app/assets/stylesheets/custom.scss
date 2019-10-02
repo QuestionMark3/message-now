@@ -15,7 +15,12 @@
 
 }
 
-.content .field .input .button {
+.content>.form>.field>.input>.button,
+#hidden-user-id,
+.hidden-msg-user-id,
+.hidden-prev-msg-user-id,
+.new-action,
+.input-checkbox {
 		display: none;
 	}
 
@@ -54,10 +59,6 @@
     word-wrap: break-all;
 }
 
-#hidden-user-id, .hidden-msg-user-id, .hidden-prev-msg-user-id {
-	display: none;
-}
-
 .ui.horizontal.divider {
 	color: #888;
 	font-weight: normal;
@@ -66,4 +67,39 @@
 
 .ui.horizontal.divider .date {
 	font-weight: bold;
+}
+
+#view {
+	border-radius: 0px;
+}
+
+#users {
+	overflow: auto;
+}
+
+#users>.cards>.user.card {
+	background-color: #999;
+	color: #fff;
+	box-shadow: none;
+}
+
+.content>i.user.icon {
+	color: #fff;
+}
+
+.content {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#new.disabled, #new:active {
+	background-color: #1279c6;
+	opacity: 1.0 !important;
+}
+
+#format {
+	border: 0px;
 }
