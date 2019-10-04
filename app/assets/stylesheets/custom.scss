@@ -20,7 +20,8 @@
 .hidden-msg-user-id,
 .hidden-prev-msg-user-id,
 .new-action,
-.input-checkbox {
+.input-checkbox,
+.view-action {
 		display: none;
 	}
 
@@ -73,17 +74,19 @@
 	border-radius: 0px;
 }
 
-#users {
+#users, #chatrooms {
 	overflow: auto;
 }
 
-#users>.cards>.user.card {
+#users>.cards>.user.card,
+#chatrooms>.cards>.chatroom.card {
 	background-color: #999;
 	color: #fff;
 	box-shadow: none;
 }
 
-.content>i.user.icon {
+.content>i.user.icon,
+.content>i.tv.icon {
 	color: #fff;
 }
 
@@ -95,9 +98,14 @@
 	user-select: none;
 }
 
-#new.disabled, #new:active {
+#new.disabled, #new:active,
+#view.disabled, #view:active {
 	background-color: #1279c6;
 	opacity: 1.0 !important;
+}
+
+#chatrooms>.cards>.chatroom.card.disabled {
+	background-color: #2185d0;
 }
 
 #format {

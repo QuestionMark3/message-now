@@ -43,7 +43,11 @@ $(document).on('turbolinks:load', () => {
 	message_style();
 	scroll_bottom(false);
 
-	// Actions
+	// View actions
+	view_chatrooms_btn();
+	chatroom_btns();
+
+	// New actions
 	new_chatroom_btn();
 	user_checkbox();
 	submit_chatroom();

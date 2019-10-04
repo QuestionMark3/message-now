@@ -1,0 +1,20 @@
+<!-- Chatrooms -->
+<div class="content view-action" id="chatrooms">
+<div class="ui link cards">
+<% chatrooms.each do |chatroom| %>
+
+	<!-- Chatroom -->
+	<% if chatroom.users.include? current_user %>
+		<div class="chatroom card" data-chatroom_id="<%= chatroom.id %>">
+		<div unselectable="on" class="content">
+			<i class = "tv icon"></i>
+			<b><%= chatroom.title %></b>
+		</div>
+		</div>
+	<% end %>
+	<!-- /Chatroom -->
+
+<% end %>
+</div>
+</div>
+<!-- /Chatrooms -->

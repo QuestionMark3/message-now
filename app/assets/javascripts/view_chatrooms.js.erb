@@ -1,0 +1,30 @@
+// Button for view chatrooms
+view_chatrooms_btn = () => {
+	var view_btn = $('#view');
+	view_btn.click((event) => {
+		
+		view_btn.addClass('disabled');
+		setTimeout(function() {view_btn.removeClass('disabled')}, 500);
+
+		view_btn.toggleClass('active');
+
+		$('.view-action').fadeToggle(500);
+		format();
+	});
+}
+
+// Buttons for selecting chatrooms
+chatroom_btns = () => {
+	$('.chatroom.card>.content').click((event) => {
+
+		// Find target element
+		var target = $(event.target).parent()
+		if ($(event.target).attr('class') != 'content') {
+			target = $(event.target).parent().parent()
+		};
+
+		// Toggle color
+		$('.chatroom.card').removeClass('disabled');
+		target.addClass('disabled');
+	});
+}
