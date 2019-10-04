@@ -12,7 +12,7 @@ submit_message = () => {
 // Style messages
 message_style = () => {
 	var current_usr_id = Number($('#hidden-user-id').text());
-	var messages = $('#message-container').children();
+	var messages = $('.message-container').children();
 
 	// Iterate through messages
 	var i;
@@ -22,11 +22,10 @@ message_style = () => {
 		var message = messages.eq(i).find('.summary');
 		var prev_message_cont = messages.eq(i-1).find('.content');
 		var prev_message = messages.eq(i-1).find('.summary');
-		var user = message.find('.user');
+		var user = message.find('.msg-user');
 		var body = message.find('.segment');
 		var msg_usr_id = Number(message.find('.hidden-msg-user-id').text());
 		var prev_msg_usr_id = Number(message.find('.hidden-prev-msg-user-id').text());
-
 		// Control flow
 		switch(msg_usr_id) {
 
@@ -34,7 +33,6 @@ message_style = () => {
 		  	message.attr('align', 'right')
 		    user.remove();
 		    body.removeClass('grey').addClass('blue').attr('align', 'left');
-
 		  case prev_msg_usr_id:
 		  	user.remove();
 		  	prev_message_cont.height(prev_message.height());

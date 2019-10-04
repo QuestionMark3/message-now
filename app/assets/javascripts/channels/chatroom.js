@@ -12,7 +12,7 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
 	// Called when there's incoming data on the websocket for this channel
 	received: function(data) {
 		// Append message partial to message container
-		$('#message-container').append(data.render_message);
+		$('.message-container').append(data.render_message);
 		// Style message partial further
 		message_style();
 		// Auto-scroll

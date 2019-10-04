@@ -14,9 +14,15 @@
 
 		<!-- Main content -->
 		<div class="content" id="messages">
-		<div class="ui large feed" id="message-container">
-			<%= render @messages %>
-		</div>
+		<% @chatrooms.each do |chatroom| %>
+
+			<% if chatroom.users.include? current_user %>
+				<div class="ui large feed message-container" data-chatroom_id="<%= chatroom.id %>">
+					<%= render partial: 'messages/message', collection: chatroom.messages %>
+				</div>
+			<% end %>
+
+		<% end %>
 		</div>
 		<!-- /Main content -->
 
@@ -29,6 +35,8 @@
 			<div class="ui fluid input">
 
 				<%= f.text_field :body, placeholder: "Enter message" %>
+
+				<%= f.hidden_field :chatroom_id %>
 
 				<%= f.button class: "button", id:"msg-form" %>
 

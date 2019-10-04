@@ -40,7 +40,6 @@ $(document).on('turbolinks:load', () => {
 
 	// Chatroom
 	submit_message();
-	message_style();
 	scroll_bottom(false);
 
 	// View actions
