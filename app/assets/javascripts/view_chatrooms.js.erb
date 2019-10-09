@@ -31,6 +31,9 @@ chatroom_btns = () => {
 		var chatroom_id = target.data('chatroom_id');
 		$('#message_chatroom_id').val(chatroom_id)
 
+		// Change chatroom
+		App[`chatroom${chatroom_id}`].setChatroomId(chatroom_id);
+
 		// Display appropriate message container
 		$('.message-container').fadeOut(500)
 		setTimeout(() => {
