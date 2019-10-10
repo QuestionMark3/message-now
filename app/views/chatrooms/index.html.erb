@@ -10,17 +10,15 @@
 
 	<!-- Feed -->
 	<div class="twelve wide column">
-	<div class="ui fluid raised card chatbox">
+	<div class="ui fluid raised card" id="chatbox">
 
 		<!-- Main content -->
 		<div class="content" id="messages">
-		<% @chatrooms.each do |chatroom| %>
+		<% current_user.chatrooms.each do |chatroom| %>
 
-			<% if chatroom.users.include? current_user %>
-				<div class="ui large feed message-container" data-chatroom_id="<%= chatroom.id %>">
-					<%= render partial: 'messages/message', collection: chatroom.messages %>
-				</div>
-			<% end %>
+			<div class="ui large feed message-container" data-chatroom_id="<%= chatroom.id %>">
+				<%= render partial: 'messages/message', collection: chatroom.messages %>
+			</div>
 
 		<% end %>
 		</div>
@@ -52,7 +50,7 @@
 
 	<!-- Verticle menu options -->
 	<div class="four wide column">
-	<div class="ui fluid raised card chatbox" id='side-options'>
+	<div class="ui fluid raised card" id='side-options'>
 	
 		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users} %> <!-- New chatroom menu -->
 		<%= render partial: 'view_chatrooms', locals: {chatrooms: @chatrooms} %> <!-- View chatrooms menu -->
