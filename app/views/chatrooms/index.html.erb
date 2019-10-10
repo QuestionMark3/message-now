@@ -70,7 +70,7 @@
 	<div class="ui fluid raised card" id='side-options'>
 	
 		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users} %> <!-- New chatroom menu -->
-		<%= render partial: 'view_chatrooms', locals: {chatrooms: @chatrooms} %> <!-- View chatrooms menu -->
+		<%= render partial: 'view_chatrooms', locals: {chatrooms: current_user.chatrooms} %> <!-- View chatrooms menu -->
 
 		<div class="content" id="format"></div> <!-- Div for fixing formatting -->
 
