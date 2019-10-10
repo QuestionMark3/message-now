@@ -8,8 +8,9 @@ new_chatroom_btn = () => {
 
 		new_btn.toggleClass('active');
 
+		$('.view-action').hide();
 		$('.new-action').fadeToggle(500);
-		format();
+
 	});
 }
 

@@ -15,7 +15,7 @@
 
 }
 
-.content>.form>.field>.input>.button,
+.form>.field>.input>.button,
 #hidden-user-id,
 .hidden-msg-user-id,
 .hidden-prev-msg-user-id,
@@ -75,6 +75,10 @@
 	border-radius: 0px;
 }
 
+#users {
+	border-top: 0px;
+}
+
 #users, #chatrooms {
 	overflow: auto;
 }
@@ -99,10 +103,18 @@
 	user-select: none;
 }
 
+#chatroom-form {
+	margin: 14px;
+}
+
 #new.disabled, #new:active,
 #view.disabled, #view:active {
 	background-color: #1279c6;
 	opacity: 1.0 !important;
+}
+
+#chatrooms {
+	border-top: 0px;
 }
 
 #chatrooms>.cards>.chatroom.card.disabled {
@@ -110,5 +122,5 @@
 }
 
 #format {
-	border: 0px;
+	border: none;
 }

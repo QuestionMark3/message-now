@@ -1,5 +1,6 @@
-// Button for view chatrooms
+// Button for viewing chatrooms
 view_chatrooms_btn = () => {
+
 	var view_btn = $('#view');
 	view_btn.click((event) => {
 		
@@ -8,8 +9,9 @@ view_chatrooms_btn = () => {
 
 		view_btn.toggleClass('active');
 
+		$('.new-action').hide();
 		$('.view-action').fadeToggle(500);
-		format();
+
 	});
 }
 
