@@ -20,7 +20,9 @@ chatroom_btns = () => {
 	$('.chatroom.card>.content').click((event) => {
 
 		// Remove dimmer
-		$('#chatbox').dimmer('show').dimmer('hide');
+		if (!$('#dimmer').hasClass('hidden')) {
+			$('#chatbox').dimmer('show').dimmer('hide');
+		};
 
 		// Find target element
 		var target = $(event.target).parent()
