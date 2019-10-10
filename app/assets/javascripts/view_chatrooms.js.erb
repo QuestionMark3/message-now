@@ -7,10 +7,11 @@ view_chatrooms_btn = () => {
 		view_btn.addClass('disabled');
 		setTimeout(function() {view_btn.removeClass('disabled')}, 500);
 
-		view_btn.toggleClass('active');
+		$('#new').removeClass('active');
+		view_btn.addClass('active');
 
 		$('.new-action').hide();
-		$('.view-action').fadeToggle(500);
+		$('.view-action').fadeIn(500);
 
 	});
 }

@@ -47,6 +47,10 @@
 	color: #777;
 }
 
+#view-header {
+	color: #444;
+}
+
 #messages-wrapper {
 	min-height: 45px;
 }
@@ -78,6 +82,15 @@
 
 #view {
 	border-radius: 0px;
+}
+
+#view-header {
+	color: #fff;
+	padding: 14px;
+	margin: 0px;
+	background-color: #2185D0;
+	border-top-left-radius: 0.28571429rem;
+	border-top-right-radius: 0.28571429rem;
 }
 
 #users {

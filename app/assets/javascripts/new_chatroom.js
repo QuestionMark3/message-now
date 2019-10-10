@@ -6,10 +6,11 @@ new_chatroom_btn = () => {
 		new_btn.addClass('disabled');
 		setTimeout(function() {new_btn.removeClass('disabled')}, 500);
 
-		new_btn.toggleClass('active');
+		$('#view').removeClass('active');
+		new_btn.addClass('active');
 
 		$('.view-action').hide();
-		$('.new-action').fadeToggle(500);
+		$('.new-action').fadeIn(500);
 
 	});
 }
