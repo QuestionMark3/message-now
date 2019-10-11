@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', () => {
 	$('.message-container').each(function() {
 
 		App[`chatroom${$(this).data('chatroom_id')}`] = App.cable.subscriptions.create({
-			channel: "ChatroomChannel",
+			channel: "MessageChannel",
 			room: String($(this).data('chatroom_id'))
 		},{
 
