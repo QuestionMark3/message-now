@@ -14,7 +14,12 @@ class ChatroomsController < ApplicationController
 	def create
 		@chatroom = current_user.chatrooms.new(chatroom_params)
 		@chatroom.users << current_user
-		@chatroom.save
+		if @chatroom.save
+			flash[:success] = 'Chatroom was successfully created'
+			redirect_to root_path
+		else
+			flash[:error] = 'There was a problem with the chatroom\'s information'
+		end
 	end
 
 	private
