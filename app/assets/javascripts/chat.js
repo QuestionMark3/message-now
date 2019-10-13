@@ -41,13 +41,13 @@ message_style = () => {
 };
 
 // Auto-scroll to bottom of message feed
-scroll_bottom = (animate) => {
-	if ($('#messages').length > 0) {
+scroll_bottom = (animate, elements) => {
+	if (elements.length > 0) {
 		if (animate == true) {
-			$('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 250);
+			elements.animate({scrollTop: elements[0].scrollHeight}, 250);
 		}
 		else {
-			$('#messages').scrollTop($('#messages')[0].scrollHeight);
+			elements.scrollTop(elements[0].scrollHeight);
 		}
 	}
 }

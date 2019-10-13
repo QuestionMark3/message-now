@@ -5,14 +5,7 @@
 <div class="ui link cards">
 <% chatrooms.each do |chatroom| %>
 
-	<!-- Chatroom -->
-	<div class="chatroom card" data-chatroom_id="<%= chatroom.id %>">
-	<div unselectable="on" class="content">
-		<i class="tv icon"></i>
-		<b><%= chatroom.title %></b>
-	</div>
-	</div>
-	<!-- /Chatroom -->
+	<%= render partial: 'chatroom_card', locals: {chatroom: chatroom} %>
 
 <% end %>
 </div>

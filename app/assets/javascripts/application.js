@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', () => {
 
 	// Chatroom
 	submit_message();
-	scroll_bottom(false);
+	scroll_bottom(false, $('#Messages'));
 
 	// View actions
 	view_chatrooms_btn();

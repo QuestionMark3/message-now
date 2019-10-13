@@ -16,15 +16,21 @@ class ChatroomsController < ApplicationController
 		@chatroom.users << current_user
 		if @chatroom.save
 			flash[:success] = 'Chatroom was successfully created'
-			redirect_to root_path
+			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom),
+																												chatroom_id: @chatroom.id,
+																												user_ids: @chatroom.users.ids
 		else
-			flash[:error] = 'There was a problem with the chatroom\'s information'
+			puts @chatroom.errors.full_messages
 		end
 	end
 
 	private
 	def chatroom_params
 		params.require(:chatroom).permit(:title, user_ids: [])
+	end
+
+	def render_chatroom(chatroom)
+		render(partial: 'chatroom_card', locals: {chatroom: chatroom})
 	end
 
 end

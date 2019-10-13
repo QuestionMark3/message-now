@@ -17,8 +17,8 @@ view_chatrooms_btn = () => {
 }
 
 // Buttons for selecting chatrooms
-chatroom_btns = () => {
-	$('.chatroom.card>.content').click((event) => {
+chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
+	el.click((event) => {
 
 		// Remove dimmer
 		if (!$('#dimmer').hasClass('hidden')) {
@@ -37,8 +37,7 @@ chatroom_btns = () => {
 
 		// Pass chatroom id to hidden field in main form
 		var chatroom_id = target.data('chatroom_id');
-		$('#message_chatroom_id').val(chatroom_id)
-
+		$('#message_chatroom_id').val(chatroom_id);
 		// Change chatroom
 		App[`chatroom${chatroom_id}`].setChatroomId(chatroom_id);
 
