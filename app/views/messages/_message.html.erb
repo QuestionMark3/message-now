@@ -1,4 +1,4 @@
-<% prev_msg = Message.find_by(id: message.id-1) %> <!-- Previous message -->
+<% prev_msg = messages.find_by(id: message.id-1) %> <!-- Previous message -->
 <% msg_offset = message.created_at - prev_msg.created_at if prev_msg %> <!-- Time since last messaege -->
 
 <!-- Datetime -->

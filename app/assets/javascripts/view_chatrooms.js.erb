@@ -45,8 +45,9 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		// Display appropriate message container
 		$('.message-container').fadeOut(500)
 		setTimeout(() => {
-			$(`.message-container[data-chatroom_id = "${chatroom_id}"]`).fadeIn(500);
-			message_style();
+			var current_chatroom = $(`.message-container[data-chatroom_id = "${chatroom_id}"]`);
+			current_chatroom.fadeIn(500);
+			message_style(current_chatroom);
 		}, 500)
 		
 	});

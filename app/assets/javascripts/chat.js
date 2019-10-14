@@ -10,9 +10,9 @@ submit_message = () => {
 
 
 // Style messages
-message_style = () => {
+message_style = (current_chatroom) => {
 	var current_usr_id = Number($('#hidden-user-id').text());
-	var messages = $('.message-container').children();
+	var messages = current_chatroom.children();
 
 	// Iterate through messages
 	var i;
