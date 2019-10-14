@@ -18,7 +18,9 @@
 		<% current_user.chatrooms.each do |chatroom| %>
 
 			<div class="ui large feed message-container" data-chatroom_id="<%= chatroom.id %>">
+
 				<%= render partial: 'messages/message', collection: chatroom.messages, locals: {messages: chatroom.messages} %>
+
 			</div>
 
 		<% end %>

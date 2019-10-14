@@ -3,8 +3,9 @@ class MessagesController < ApplicationController
 
 	def create
 		message = current_user.messages.build(message_params)
+		messages = message.chatroom.messages
 		if message.save
-			ActionCable.server.broadcast "chatroom#{message.chatroom.id}", render_message: render_message(message)
+			ActionCable.server.broadcast "chatroom#{message.chatroom.id}", render_message: render_message(message, messages)
 		else
 			puts message.errors.full_messages
 		end
@@ -16,8 +17,8 @@ class MessagesController < ApplicationController
 		params.require(:message).permit(:body, :chatroom_id)
 	end
 
-	def render_message(msg)
-		render(partial: 'messages/message', locals: {message: msg})
+	def render_message(msg, msgs)
+		render(partial: 'messages/message', locals: {message: msg, messages: msgs})
 	end
 
 end
