@@ -69,11 +69,12 @@
 	<div class="four wide column">
 	<div class="ui fluid raised card" id='side-options'>
 	
+		<%= render partial: 'profile', locals: {chatrooms: current_user.chatrooms} %> <!-- Profile -->
 		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users} %> <!-- New chatroom menu -->
 		<%= render partial: 'view_chatrooms', locals: {chatrooms: current_user.chatrooms} %> <!-- View chatrooms menu -->
 
 		<!-- Actions -->
-		<div class="ui fluid blue vertical buttons" id="button-group">
+		<div class="ui fluid blue vertical buttons">
 
 		  <a class="ui button" id="view">
 		  	<i class="sitemap icon"></i>

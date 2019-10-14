@@ -9,6 +9,7 @@ new_chatroom_btn = () => {
 		$('#view').removeClass('active');
 		new_btn.addClass('active');
 
+		$('.profile').hide();
 		$('.view-action').hide();
 		$('.new-action').fadeIn(500);
 

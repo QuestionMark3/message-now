@@ -1,0 +1,36 @@
+<% chat_length = chatrooms.length %>
+<% users = [] %>
+<% msg_hash = {} %>
+<% chatrooms.each do |chatroom| %>
+	<% users.append chatroom.users %>
+	<% msg_hash[chatroom.messages.length] = chatroom.title %>
+<% end %>
+<% reach = !users.empty? ? users.uniq.length : 0  %>
+<% active_chat = !msg_hash.empty? ? msg_hash.max_by{|k,v| k}[1]: 'none' %>
+
+<h2 class="profile" id="pro-header"><%= current_user.username %></h2>
+
+<div class="content profile">
+
+	<div class="ui horizontal statistics">
+
+		<div class="blue statistic">
+			<div class="value"><%= chat_length %></div>
+			<div class="label"><%= 'chatroom'.pluralize(chat_length) %></div>
+		</div>
+
+		<div class="blue statistic">
+			<div class="value"><%= reach %></div>
+			<div class="label"><%= 'user'.pluralize(reach) %> reached</div>
+		</div>
+
+	</div>
+	
+	<div class="ui section divider"></div>
+
+	<div class="ui blue tiny statistic">
+		<div class="label">most active chat:</div>
+		<div class="value"><%= active_chat %></div>
+	</div>
+
+</div>

@@ -84,7 +84,7 @@
 	border-radius: 0px;
 }
 
-#view-header {
+#view-header, #pro-header {
 	color: #fff;
 	padding: 14px;
 	margin: 0px;
@@ -93,7 +93,7 @@
 	border-top-right-radius: 0.28571429rem;
 }
 
-#users {
+#users, #chatrooms, #profile {
 	border-top: 0px;
 }
 
@@ -131,10 +131,6 @@
 	opacity: 1.0 !important;
 }
 
-#chatrooms {
-	border-top: 0px;
-}
-
 #chatrooms>.cards>.chatroom.card.disabled {
 	background-color: #2185d0;
 }
@@ -143,4 +139,9 @@
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+}
+
+.section {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
 }
