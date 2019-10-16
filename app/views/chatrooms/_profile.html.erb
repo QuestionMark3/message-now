@@ -2,10 +2,16 @@
 <% users = [] %>
 <% msg_hash = {} %>
 <% chatrooms.each do |chatroom| %>
-	<% users.append chatroom.users %>
+
 	<% msg_hash[chatroom.messages.length] = chatroom.title %>
+
+	<% chatroom.users.each do |user| %>
+		<% users.append user %>
+	<% end %>
+
 <% end %>
-<% reach = !users.empty? ? users.uniq.length : 0  %>
+
+<% reach = !users.empty? ? users.uniq.length - 1 : 0  %>
 <% active_chat = !msg_hash.empty? ? msg_hash.max_by{|k,v| k}[1]: 'none' %>
 
 <h2 class="profile" id="pro-header"><%= current_user.username %></h2>
