@@ -75,6 +75,8 @@ format_datetime = (date_time) => {
   hours = hours % 12;
   hours = hours ? hours : 12;
 
+  if(minutes < 10) {minutes = `0${minutes}`};
+
 	// Format date
 	// Variables for comparison
 	datetime.setHours(0,0,0,0);
