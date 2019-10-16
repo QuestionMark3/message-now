@@ -18,10 +18,13 @@ new_chatroom_btn = () => {
 
 // User checkbox functionality
 user_checkbox = () => {
+	// Uncheck all checkboxes on page load
+	uncheck();
+
 	$('.user.card>.content').click((event) => {
 
 		// Find target element
-		var target = $(event.target).parent()
+		let target = $(event.target).parent()
 		if ($(event.target).attr('class') != 'content') {
 			target = $(event.target).parent().parent()
 		};
@@ -40,13 +43,21 @@ user_checkbox = () => {
 	});
 }
 
-// Bind 'enter' key to 'submit' button and clear textfield
+// Bind 'enter' key to 'submit' button
 submit_chatroom = () => {
 	$('#chatroom_title').on('keydown', (event) => {
 		if (event.target == document.activeElement && event.which == 13) {
 			$('#room-form').click();
+			// Clear text field
 			event.target.value = "";
+			// Highlight appropriate chatroom button
 			$('.user.card').css('background-color', '#999');
+			//Uncheck all checkboxes
+			uncheck();
 		};
 	});
+};
+
+uncheck = () => {
+	$(`#chatroom-form :input`).prop("checked", false);
 };
