@@ -18,7 +18,8 @@ class ChatroomsController < ApplicationController
 			flash[:success] = 'Chatroom was successfully created'
 			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom),
 																												chatroom_id: @chatroom.id,
-																												user_ids: @chatroom.users.ids
+																												user_ids: @chatroom.users.ids,
+																												creator_id: current_user.id
 		else
 			puts @chatroom.errors.full_messages
 		end

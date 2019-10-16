@@ -30,17 +30,13 @@ chat_subscribe = (el) => {
 		// Called when there's incoming data on the websocket for this channel
 		received: function(data) {
 			// Append message partial to message container
-			var current_chatroom = $(`.message-container[data-chatroom_id=${this.chatroomId}]`);
+			var current_chatroom = $(`.message-container[data-chatroom_id=${data.chatroom_id}]`);
 			current_chatroom.append(data.render_message);
+			
 			// Style message partial further
 			message_style(current_chatroom);
 			// Auto-scroll
 			scroll_bottom(true, $('#messages'));
-		},
-
-		// Called  in function chatroom_btns() in file: view_chatroom.js.erb
-		setChatroomId: function(chatroomId) {
-			this.chatroomId = chatroomId;
 		}
 
 	});

@@ -5,7 +5,8 @@ class MessagesController < ApplicationController
 		message = current_user.messages.build(message_params)
 		messages = message.chatroom.messages
 		if message.save
-			ActionCable.server.broadcast "chatroom#{message.chatroom.id}", render_message: render_message(message, messages)
+			ActionCable.server.broadcast "chatroom#{message.chatroom.id}", 	render_message: render_message(message, messages),
+																																			chatroom_id: message.chatroom.id
 		else
 			puts message.errors.full_messages
 		end

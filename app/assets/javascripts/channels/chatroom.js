@@ -28,7 +28,11 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       var chat_btn = $('.ui.link.cards').children().last();
       chatroom_btns(chat_btn);
       $('#view').click();
-      chat_btn.children().last().children().click();
+
+      // Click button  only if creator
+      if (current_usr_id == data.creator_id) {
+        chat_btn.children().last().children().click();
+      };
       scroll_bottom(true, $('#chatrooms'));
 	  };
   }

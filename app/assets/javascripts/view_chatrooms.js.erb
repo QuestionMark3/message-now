@@ -39,8 +39,6 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		// Pass chatroom id to hidden field in main form
 		var chatroom_id = target.data('chatroom_id');
 		$('#message_chatroom_id').val(chatroom_id);
-		// Change chatroom
-		App[`chatroom${chatroom_id}`].setChatroomId(chatroom_id);
 
 		// Display appropriate message container
 		$('.message-container').fadeOut(500)
