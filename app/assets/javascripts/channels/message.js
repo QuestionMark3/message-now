@@ -30,7 +30,7 @@ chat_subscribe = (el) => {
 		// Called when there's incoming data on the websocket for this channel
 		received: function(data) {
 			// Append message partial to message container
-			var current_chatroom = $(`.message-container[data-chatroom_id=${data.chatroom_id}]`);
+			let current_chatroom = $(`.message-container[data-chatroom_id=${data.chatroom_id}]`);
 			current_chatroom.append(data.render_message);
 			
 			// Style message partial further

@@ -1,7 +1,7 @@
 // Button for viewing chatrooms
 view_chatrooms_btn = () => {
 
-	var view_btn = $('#view');
+	let view_btn = $('#view');
 	view_btn.click((event) => {
 		
 		view_btn.addClass('disabled');
@@ -27,7 +27,7 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		};
 
 		// Find target element
-		var target = $(event.target).parent()
+		let target = $(event.target).parent()
 		if ($(event.target).attr('class') != 'content') {
 			target = $(event.target).parent().parent()
 		};
@@ -37,13 +37,13 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		target.addClass('disabled');
 
 		// Pass chatroom id to hidden field in main form
-		var chatroom_id = target.data('chatroom_id');
+		let chatroom_id = target.data('chatroom_id');
 		$('#message_chatroom_id').val(chatroom_id);
 
 		// Display appropriate message container
 		$('.message-container').fadeOut(500)
 		setTimeout(() => {
-			var current_chatroom = $(`.message-container[data-chatroom_id = "${chatroom_id}"]`);
+			let current_chatroom = $(`.message-container[data-chatroom_id = "${chatroom_id}"]`);
 			current_chatroom.fadeIn(500);
 			message_style(current_chatroom);
 		}, 500)

@@ -1,6 +1,6 @@
 // Button for creating new chatroom
 new_chatroom_btn = () => {
-	var new_btn = $('#new');
+	let new_btn = $('#new');
 	new_btn.click((event) => {
 		
 		new_btn.addClass('disabled');

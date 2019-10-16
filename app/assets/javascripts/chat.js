@@ -11,31 +11,31 @@ submit_message = () => {
 
 // Style messages
 message_style = (current_chatroom) => {
-	var current_usr_id = Number($('#hidden-user-id').text());
-	var messages = current_chatroom.children();
+	let current_usr_id = Number($('#hidden-user-id').text());
+	let messages = current_chatroom.children();
 
 	// Timestamp
 	current_chatroom.find('.hidden-timestamp').each(function(i) {
 		
-		var timestamp = $(this).data('timestamp');
-		var datetime = new Date(timestamp);
+		let timestamp = $(this).data('timestamp');
+		let datetime = new Date(timestamp);
 		strfdatetime = format_datetime(datetime);
 		current_chatroom.find('.date').eq(i).text(strfdatetime[0]);
 		current_chatroom.find('.time').eq(i).text(strfdatetime[1]);
 	});
 
 	// Iterate through messages
-	var i;
+	let i;
 	for (i = 0; i < messages.length; i++) {
 
 		// Variable definitions
-		var message = messages.eq(i).find('.summary');
-		var prev_message_cont = messages.eq(i-1).find('.content');
-		var prev_message = messages.eq(i-1).find('.summary');
-		var user = message.find('.msg-user');
-		var body = message.find('.segment');
-		var msg_usr_id = Number(message.find('.hidden-msg-user-id').text());
-		var prev_msg_usr_id = Number(message.find('.hidden-prev-msg-user-id').text());
+		let message = messages.eq(i).find('.summary');
+		let prev_message_cont = messages.eq(i-1).find('.content');
+		let prev_message = messages.eq(i-1).find('.summary');
+		let user = message.find('.msg-user');
+		let body = message.find('.segment');
+		let msg_usr_id = Number(message.find('.hidden-msg-user-id').text());
+		let prev_msg_usr_id = Number(message.find('.hidden-prev-msg-user-id').text());
 		// Control flow
 		switch(msg_usr_id) {
 

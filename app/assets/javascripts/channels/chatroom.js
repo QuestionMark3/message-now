@@ -12,20 +12,20 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
 
   // Called when there's incoming data on the websocket for this channel
   received: function(data) { 
-    var current_usr_id = Number($('#hidden-user-id').text());
+    let current_usr_id = Number($('#hidden-user-id').text());
   	if (data.user_ids.includes(current_usr_id)) {
 	    // Append chatroom button to chatrooms list
 	    $('#chatrooms>.ui.link.cards').append(data.render_chatroom);
 	    // Append message container to main content
-	    var clss = 'class="ui large feed message-container"';
-	    var dta = `data-chatroom_id="${data.chatroom_id}"`;
+	    let clss = 'class="ui large feed message-container"';
+	    let dta = `data-chatroom_id="${data.chatroom_id}"`;
 	    $('#messages').append(`<div ${clss} ${dta}></div>`);
 
       // Create subscription
       chat_subscribe( $('.message-container').last() );
 
       // Make chatroom button clickable
-      var chat_btn = $('.ui.link.cards').children().last();
+      let chat_btn = $('.ui.link.cards').children().last();
       chatroom_btns(chat_btn);
       $('#view').click();
 
