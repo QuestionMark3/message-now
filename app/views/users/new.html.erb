@@ -15,7 +15,7 @@
   <div class="ui row">
   <div class="column twelve wide">
   <div class="ui segment">
-  <%= form_for(@user, :html => {class: "ui big form"}) do |f| %>
+  <%= form_for(@user, :html => {class: "ui big form"}, remote: true) do |f| %>
 
   	<!-- Username -->
     <div class="required field">

@@ -17,11 +17,11 @@ new_chatroom_btn = () => {
 }
 
 // User checkbox functionality
-user_checkbox = () => {
+user_checkbox = (el=$('.user.card>.content')) => {
 	// Uncheck all checkboxes on page load
 	uncheck();
 
-	$('.user.card>.content').click((event) => {
+	el.click((event) => {
 
 		// Find target element
 		let target = $(event.target).parent()

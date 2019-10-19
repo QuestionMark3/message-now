@@ -15,7 +15,8 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
     let current_usr_id = Number($('#hidden-user-id').text());
   	if (data.user_ids.includes(current_usr_id)) {
 	    // Append chatroom button to chatrooms list
-	    $('#chatrooms>.ui.link.cards').append(data.render_chatroom);
+      let chat_list = $('#chatrooms>.ui.link.cards');
+	    chat_list.append(data.render_chatroom);
 	    // Append message container to main content
 	    let clss = 'class="ui large feed message-container"';
 	    let dta = `data-chatroom_id="${data.chatroom_id}"`;
@@ -25,7 +26,7 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       chat_subscribe( $('.message-container').last() );
 
       // Make chatroom button clickable
-      let chat_btn = $('.ui.link.cards').children().last();
+      let chat_btn = chat_list.children().last();
       chatroom_btns(chat_btn);
       $('#view').click();
 

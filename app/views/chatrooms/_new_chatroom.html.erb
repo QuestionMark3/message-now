@@ -27,12 +27,7 @@
 
 	<!-- User -->
 	<% if user != current_user %>
-		<div class="user card" data-user-id="<%= user.id %>">
-		<div unselectable="on" class="content">
-			<i class = "user icon"></i>
-			<b><%= user.username %></b>
-		</div>
-		</div>
+		<%= render partial: 'users/user_card', locals: {user: user} %>
 	<% end %>
 	<!-- /User -->
 
