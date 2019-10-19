@@ -35,6 +35,25 @@ chat_subscribe = (el) => {
 			
 			// Style message partial further
 			message_style(current_chatroom);
+
+			// Increment badge notifications if chatroom not open
+			if (current_chatroom.css('display') == 'none') {
+
+				// Chatroom
+				let badge = $(`#chatroom_${data.chatroom_id}_badge`);
+				let count = Number(badge.text());
+				count += 1;
+				badge.text(String(count));
+				badge.css('display', 'block');
+
+				// All chatrooms
+				let main_badge = $('#chatrooms_badge');
+				let main_count = Number(main_badge.text());
+				main_count += 1;
+				main_badge.text(String(main_count));
+				main_badge.css('display', 'block');
+			};
+
 			// Auto-scroll
 			scroll_bottom(true, $('#messages'));
 		}

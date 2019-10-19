@@ -26,7 +26,8 @@
 .new-action,
 .input-checkbox,
 .view-action,
-.message-container {
+.message-container,
+.floating.ui.red.label {
 		display: none;
 	}
 
@@ -82,6 +83,7 @@
 
 #view {
 	border-radius: 0px;
+	position: relative;
 }
 
 #view-header, #pro-header {
