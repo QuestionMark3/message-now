@@ -22,6 +22,9 @@ $(document).on('turbolinks:load', () => {
 	// Flash messages
 	message_close();
 
+	// Sessions
+	responsive();
+
 	// Chatroom
 	submit_message();
 	scroll_bottom(false, $('#Messages'));
