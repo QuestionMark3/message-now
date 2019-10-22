@@ -9,27 +9,36 @@
 <!-- Right hand options -->
 <div class="right menu">
 
-  <!-- Logout -->
+  <!-- Session options -->
   <% if logged_in? %>
+
+    <!-- Logout -->
     <div class="item">
       <%= link_to "Log out", logout_path, method: :delete, class: "ui inverted grey button" %>
     </div>
+    <!-- /Logout -->
+
+  <% else %>
+
+    <% current_url = request.env['PATH_INFO'] %>
+     
+    <!-- Log in button -->
+    <% if current_url == '/signup' %>
+      <div class="item">
+      <%= link_to "Log in", login_path, class: "ui inverted grey button" %>
+      </div>
+    <!-- /Log in button -->
+    
+    <!-- Sign up button -->
+    <% else %>
+      <div class="item">
+      <%= link_to "Sign up", signup_path, class: "ui inverted grey button" %> 
+      </div>
+    <% end %>
+    <!-- /Sign up button -->
+
   <% end %>
-  <!-- /Logout -->
-
-  <!-- Sign up button -->
-  <% if !logged_in? %>
-
-    <div class="item">
-    <%= link_to "Log in", login_path, class: "ui inverted grey button" %>
-    </div>
-
-    <div class="item">
-    <%= link_to "Sign up", signup_path, class: "ui inverted grey button" %> 
-    </div>
-
-  <% end %>
-  <!-- /Sign up button -->
+  <!-- /Session options -->
 
 </div>
 <!-- /Right hand options -->

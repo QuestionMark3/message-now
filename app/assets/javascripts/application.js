@@ -22,10 +22,6 @@ $(document).on('turbolinks:load', () => {
 	// Flash messages
 	message_close();
 
-	// Login page
-	form_opacity();
-	equal_height();
-
 	// Chatroom
 	submit_message();
 	scroll_bottom(false, $('#Messages'));
