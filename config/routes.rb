@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 	root 'chatrooms#index'
 	post 'chatroom' => 'chatrooms#create'
 
-	#User route
+	# User route
 	get 'signup' => 'users#new'
 	post 'users' => 'users#create'
 
@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
 	# Message route
 	post 'message' => 'messages#create'
+
+	# Chatroom User routes
+	post 'unread' => 'chatroom_users#reset_unread'
 
 	# Channel route
 	mount ActionCable.server, at: '/cable'

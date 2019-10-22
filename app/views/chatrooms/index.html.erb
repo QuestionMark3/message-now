@@ -73,14 +73,19 @@
 	
 		<%= render partial: 'profile', locals: {chatrooms: current_user.chatrooms} %> <!-- Profile -->
 		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users} %> <!-- New chatroom menu -->
-		<%= render partial: 'view_chatrooms', locals: {chatrooms: current_user.chatrooms} %> <!-- View chatrooms menu -->
+		<%= render partial: 'view_chatrooms', locals: {user_chatrooms: @user_chatrooms} %> <!-- View chatrooms menu -->
 
 		<!-- Actions -->
 		<div class="ui fluid blue vertical buttons">
 
 		  <a class="ui button" id="view">
 		  	<i class="sitemap icon"></i>
-		  	<div class="floating ui red label" id="chatrooms_badge">0</div>
+		  	<% if @total_unread === 0 %>
+					<% disp = 'none' %>
+				<% else %>
+					<% disp = 'block' %>
+				<% end %>
+		  	<div class="floating ui red label" id="chatrooms_badge" style="display:<%= disp %>"><%= @total_unread %></div>
 		    Chatrooms
 		  </a>
 

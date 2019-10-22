@@ -36,23 +36,14 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		$('.chatroom.card').removeClass('disabled');
 		target.addClass('disabled');
 
-		// Hide and reset badge
+		// Reset badge for target
 		let badge = target.find('.floating.ui.red.label');
-		let count = Number(badge.text());
-		badge.text(String(0));
-		badge.css('display', 'none');
-
-		// Subtract count from main badge
-		let main_badge = $('#chatrooms_badge');
-		let main_count = Number(main_badge.text());
-		main_count -= count;
-		main_badge.text(String(main_count));
-		if (main_count === 0) {
-			main_badge.css('display', 'none');	
-		};
+		let user_id = Number($('#hidden-user-id').text());
+		let chatroom_id = target.data('chatroom_id');
+		reset_unread(badge);
+		reset_db_unread(user_id, chatroom_id);
 
 		// Pass chatroom id to hidden field in main form
-		let chatroom_id = target.data('chatroom_id');
 		$('#message_chatroom_id').val(chatroom_id);
 
 		// Display appropriate message container

@@ -37,21 +37,17 @@ chat_subscribe = (el) => {
 			message_style(current_chatroom);
 
 			// Increment badge notifications if chatroom not open
+			let badge = $(`#chatroom_${data.chatroom_id}_badge`);
+			let main_badge = $('#chatrooms_badge');
 			if (current_chatroom.css('display') == 'none') {
-
-				// Chatroom
-				let badge = $(`#chatroom_${data.chatroom_id}_badge`);
-				let count = Number(badge.text());
-				count += 1;
-				badge.text(String(count));
-				badge.css('display', 'block');
-
-				// All chatrooms
-				let main_badge = $('#chatrooms_badge');
-				let main_count = Number(main_badge.text());
-				main_count += 1;
-				main_badge.text(String(main_count));
-				main_badge.css('display', 'block');
+				let user_id = data.user_id;
+				let chatroom_id = data.chatroom_id;
+				increase_unread(badge);
+				increase_unread(main_badge);
+			}
+			else {
+				reset_unread(badge);
+				reset_db_unread(data.user_id, data.chatroom_id);
 			};
 
 			// Auto-scroll

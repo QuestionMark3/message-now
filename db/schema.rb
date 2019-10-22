@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_28_173527) do
+ActiveRecord::Schema.define(version: 2019_10_20_195217) do
 
   create_table "chatroom_users", force: :cascade do |t|
     t.integer "chatroom_id"
     t.integer "user_id"
+    t.integer "unread", default: 0
   end
 
   create_table "chatrooms", force: :cascade do |t|
