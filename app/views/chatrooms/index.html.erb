@@ -78,20 +78,20 @@
 		<!-- Actions -->
 		<div class="ui fluid blue vertical buttons">
 
+		  <a class="ui button" id="new">
+		  	<i class="plus icon"></i>
+		    New Chatroom
+		  </a>
+
 		  <a class="ui button" id="view">
-		  	<i class="sitemap icon"></i>
+		  	<i class="building icon"></i>
 		  	<% if @total_unread === 0 %>
 					<% disp = 'none' %>
 				<% else %>
 					<% disp = 'block' %>
 				<% end %>
 		  	<div class="floating ui red label" id="chatrooms_badge" style="display:<%= disp %>"><%= @total_unread %></div>
-		    Chatrooms
-		  </a>
-
-		  <a class="ui button" id="new">
-		  	<i class="tv icon"></i>
-		    New Chatroom
+		    My Chatrooms
 		  </a>
 
 		</div>
