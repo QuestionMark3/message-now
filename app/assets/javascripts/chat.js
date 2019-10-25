@@ -53,7 +53,7 @@ message_style = (current_chatroom) => {
 // Auto-scroll to bottom of message feed
 scroll_bottom = (animate, elements) => {
 	if (elements.length > 0) {
-		if (animate == true) {
+		if (animate) {
 			elements.animate({scrollTop: elements[0].scrollHeight}, 250);
 		}
 		else {
