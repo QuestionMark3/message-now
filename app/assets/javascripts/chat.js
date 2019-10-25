@@ -11,11 +11,11 @@ submit_message = () => {
 
 // Style messages
 message_style = (current_chatroom) => {
-	let current_usr_id = Number($('#hidden-user-id').text());
+	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
 	let messages = current_chatroom.children();
 
 	// Timestamp
-	current_chatroom.find('.hidden-timestamp').each(function(i) {
+	current_chatroom.find('.hidden-data').each(function(i) {
 		
 		let timestamp = $(this).data('timestamp');
 		let datetime = new Date(timestamp);
@@ -34,8 +34,8 @@ message_style = (current_chatroom) => {
 		let prev_message = messages.eq(i-1).find('.summary');
 		let user = message.find('.msg-user');
 		let body = message.find('.segment');
-		let msg_usr_id = Number(message.find('.hidden-msg-user-id').text());
-		let prev_msg_usr_id = Number(message.find('.hidden-prev-msg-user-id').text());
+		let msg_usr_id = Number(message.find('.hidden-data').data('msg_user_id'));
+		let prev_msg_usr_id = Number(message.find('.hidden-data').data('prev_msg_user_id'));
 		// Control flow
 		switch(msg_usr_id) {
 

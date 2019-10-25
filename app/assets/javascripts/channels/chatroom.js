@@ -12,7 +12,7 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
 
   // Called when there's incoming data on the websocket for this channel
   received: function(data) { 
-    let current_usr_id = Number($('#hidden-user-id').text());
+    let current_usr_id = Number($('#hidden-user-id').data('user_id'));
   	if (data.user_ids.includes(current_usr_id)) {
 	    // Append chatroom button to chatrooms list
       let chat_list = $('#chatrooms>.ui.link.cards');

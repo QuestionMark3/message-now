@@ -33,11 +33,9 @@
 	<!-- /Message body -->
 	
 	<!-- Hidden data -->
-	<span class="hidden-timestamp" data-timestamp="<%= datetime.to_time.iso8601 %>"></span>
-	<span class="hidden-msg-user-id"><%= message.user_id %></span>
 	<% prev_msg_user = prev_msg && prev_msg.user %>
 	<% prev_msg_user_id = prev_msg_user && prev_msg_user.id %>
-	<span class='hidden-prev-msg-user-id'><%= prev_msg_user_id %></span>
+	<span class="hidden-data" data-timestamp="<%= datetime.to_time.iso8601 %>" data-msg_user_id="<%= message.user_id %>" data-prev_msg_user_id="<%= prev_msg_user_id %>"></span>
 	<!-- /Hidden data -->
 
 </div>

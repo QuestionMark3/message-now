@@ -2,7 +2,6 @@
 increase_unread = (badge) => {
 	let count = Number(badge.text());
 	count += 1;
-	console.log(count);
 	badge.text(String(count));
 	badge.css('display', 'block');
 };
