@@ -75,8 +75,14 @@
 		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users} %> <!-- New chatroom menu -->
 		<%= render partial: 'view_chatrooms', locals: {user_chatrooms: @user_chatrooms} %> <!-- View chatrooms menu -->
 
+		<!-- Chatroom Users -->
+		<% current_user.chatrooms.each do |chatroom| %>
+			<%= render partial: 'chatroom_users', locals: {chatroom: chatroom, chatroom_id: chatroom.id} %>
+		<% end %>
+		<!-- /Chatroom Users -->
+
 		<!-- Actions -->
-		<div class="ui fluid blue vertical buttons">
+		<div class="ui fluid blue vertical buttons" id="actions">
 
 		  <a class="ui button" id="new">
 		  	<i class="plus icon"></i>

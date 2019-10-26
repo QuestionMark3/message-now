@@ -19,6 +19,7 @@ class ChatroomsController < ApplicationController
 		if @chatroom.save
 			flash[:success] = 'Chatroom was successfully created'
 			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom, 0),
+																												render_chatroom_users: render_chatroom_users(@chatroom, current_user),
 																												chatroom_id: @chatroom.id,
 																												user_ids: @chatroom.users.ids,
 																												creator_id: current_user.id
@@ -33,7 +34,11 @@ class ChatroomsController < ApplicationController
 	end
 
 	def render_chatroom(chatroom, unread)
-		render(partial: 'chatroom_card', locals: {chatroom: chatroom, unread: unread})
+		render_to_string(partial: 'chatroom_card', locals: {chatroom: chatroom, unread: unread})
+	end
+
+	def render_chatroom_users(chatroom, current_user)
+		render_to_string(partial: 'chatroom_users', locals: {chatroom: chatroom, current_user: current_user})
 	end
 
 end

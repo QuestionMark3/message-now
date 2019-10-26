@@ -12,6 +12,7 @@ view_chatrooms_btn = () => {
 
 		$('.profile').hide();
 		$('.new-action').hide();
+		$('.chatroom-user').hide();
 		$('.view-action').fadeIn(500);
 
 	});
@@ -47,13 +48,18 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		$('#message_chatroom_id').val(chatroom_id);
 
 		// Display appropriate message container
-		$('.message-container').fadeOut(500)
+		$('.message-container').fadeOut(500);
 		setTimeout(() => {
 			let current_chatroom = $(`.message-container[data-chatroom_id = "${chatroom_id}"]`);
 			current_chatroom.fadeIn(500);
 			message_style(current_chatroom);
 			scroll_bottom(false, $('#messages'));
 		}, 500)
+
+		// Display users
+		$('.view-action').hide();
+		let current_chatroom_users = $(`.chatroom-user[data-chatroom_id = "${chatroom_id}"]`);
+		current_chatroom_users.fadeIn(500);
 
 	});
 }

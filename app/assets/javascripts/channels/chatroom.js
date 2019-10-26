@@ -21,6 +21,9 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
 	    let clss = 'class="ui large feed message-container"';
 	    let dta = `data-chatroom_id="${data.chatroom_id}"`;
 	    $('#messages').append(`<div ${clss} ${dta}></div>`);
+      // Append chatroom users container to vertical menu
+      let actions = $('#actions');
+      actions.before(data.render_chatroom_users);
 
       // Create subscription
       chat_subscribe( $('.message-container').last() );

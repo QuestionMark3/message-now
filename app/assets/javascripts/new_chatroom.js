@@ -11,6 +11,7 @@ new_chatroom_btn = () => {
 
 		$('.profile').hide();
 		$('.view-action').hide();
+		$('.chatroom-user').hide();
 		$('.new-action').fadeIn(500);
 
 	});
@@ -24,9 +25,9 @@ user_checkbox = (el=$('.user.card>.content')) => {
 	el.click((event) => {
 
 		// Find target element
-		let target = $(event.target).parent()
+		let target = $(event.target).parent();
 		if ($(event.target).attr('class') != 'content') {
-			target = $(event.target).parent().parent()
+			target = $(event.target).parent().parent();
 		};
 
 		// Click hidden checkbox
@@ -34,10 +35,10 @@ user_checkbox = (el=$('.user.card>.content')) => {
 
 		// Toggle color
 		if (target.css('background-color') == 'rgb(153, 153, 153)') {
-			target.css('background-color', '#2185d0')
+			target.css('background-color', '#2185d0');
 		}
 		else {
-			target.css('background-color', '#999')
+			target.css('background-color', '#999');
 		};
 
 	});

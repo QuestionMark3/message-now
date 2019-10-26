@@ -1,0 +1,16 @@
+<h2 class="chatroom-user" id="users-header" data-chatroom_id="<%= chatroom.id %>"><%= chatroom.title %></h2> <!-- Header -->
+
+<!-- Chatrooms -->
+<div class="content chatroom-user" id="chatroom-users" data-chatroom_id="<%= chatroom.id %>">
+<h1>Users:</h1>
+<div class="ui list">
+<% chatroom.users.each do |user| %>
+
+	<% if user != current_user %>
+		<h2 class="item header"><%= user.username %></h2>
+	<% end %>
+
+<% end %>
+</div>
+</div>
+<!-- /Chatrooms -->
