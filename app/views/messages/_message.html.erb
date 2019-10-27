@@ -1,19 +1,21 @@
-<% prev_msg = messages.where("id < ?", message.id).last %> <!-- Previous message -->
-<% msg_offset = message.created_at - prev_msg.created_at if prev_msg %> <!-- Time since last messaege -->
+<% # Previous message %>
+<% prev_msg = messages.where("id < ?", message.id).last %>
+<% # Time since last messaege %>
+<% msg_offset = message.created_at - prev_msg.created_at if prev_msg %>
 <% datetime = message.created_at %>
-<!-- Datetime -->
+<% # Datetime %>
 <% if !msg_offset || msg_offset >= 1.hour %>
 	<% now = Time.current.getlocal %>
 
 	<!-- Timestamp -->
-	<div align="center" class="ui horizontal divider">
+	<div align="center" class="ui horizontal divider" data-timestamp="<%= datetime.to_time.iso8601 %>">
 		<span class="date"></span>
 		<span class="time"></span>
 	</div>
 	<!-- /Timestamp -->
 
 <% end %>
-<!-- /Datetime -->
+<% #Datetime %>
 
 <!-- Message -->
 <div class="event">
@@ -35,7 +37,7 @@
 	<!-- Hidden data -->
 	<% prev_msg_user = prev_msg && prev_msg.user %>
 	<% prev_msg_user_id = prev_msg_user && prev_msg_user.id %>
-	<span class="hidden-data" data-timestamp="<%= datetime.to_time.iso8601 %>" data-msg_user_id="<%= message.user_id %>" data-prev_msg_user_id="<%= prev_msg_user_id %>"></span>
+	<span class="hidden-data" data-msg_user_id="<%= message.user_id %>" data-prev_msg_user_id="<%= prev_msg_user_id %>"></span>
 	<!-- /Hidden data -->
 
 </div>

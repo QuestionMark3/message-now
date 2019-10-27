@@ -11,17 +11,18 @@ submit_message = () => {
 
 // Style messages
 message_style = (current_chatroom) => {
+
 	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
 	let messages = current_chatroom.children();
 
 	// Timestamp
-	current_chatroom.find('.hidden-data').each(function(i) {
+	current_chatroom.find('.ui.horizontal.divider').each(function(i) {
 		
 		let timestamp = $(this).data('timestamp');
 		let datetime = new Date(timestamp);
 		strfdatetime = format_datetime(datetime);
-		current_chatroom.find('.date').eq(i).text(strfdatetime[0]);
-		current_chatroom.find('.time').eq(i).text(strfdatetime[1]);
+		$(this).children('.date').text(strfdatetime[0]);
+		$(this).children('.time').text(strfdatetime[1]);
 	});
 
 	// Iterate through messages
