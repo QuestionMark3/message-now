@@ -16,9 +16,10 @@ class ChatroomsController < ApplicationController
 	def create
 		@chatroom = current_user.chatrooms.new(chatroom_params)
 		@chatroom.users << current_user
+		chatrooms = current_user.chatrooms
 		if @chatroom.save
 			flash[:success] = 'Chatroom was successfully created'
-			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom, 0, @chatrooms.length),
+			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom, 0, chatrooms.length),
 																												render_chatroom_users: render_chatroom_users(@chatroom, current_user),
 																												chatroom_id: @chatroom.id,
 																												user_ids: @chatroom.users.ids,
