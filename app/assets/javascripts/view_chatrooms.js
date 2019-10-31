@@ -12,7 +12,7 @@ view_chatrooms_btn = () => {
 
 		$('.profile').hide();
 		$('.new-action').hide();
-		$('.chatroom-user').hide();
+		$('.chatroom-options').hide();
 		$('.view-action').fadeIn(500);
 
 	});
@@ -22,15 +22,28 @@ view_chatrooms_btn = () => {
 chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 	el.click((event) => {
 
+		// Ignore if ellipsis is clicked
+		if ($(event.target).hasClass('ellipsis')) {
+			return;
+		};
+
+		// Find target element
+		let target = $(event.target).closest('.chatroom.card');
+
 		// Remove dimmer
 		if (!$('#dimmer').hasClass('hidden')) {
 			$('#chatbox').dimmer('show').dimmer('hide');
 		};
 
-		// Find target element
-		let target = $(event.target).parent()
-		if ($(event.target).attr('class') != 'content') {
-			target = $(event.target).parent().parent()
+		// Display users
+		let chatroom_id = target.data('chatroom_id');
+		$('.view-action').hide();
+		let current_chatroom_users = $(`.chatroom-options[data-chatroom_id = "${chatroom_id}"]`);
+		current_chatroom_users.fadeIn(500);
+
+		// Do noting else if card is disabled
+		if (target.hasClass('disabled')) {
+			return;
 		};
 
 		// Toggle color
@@ -40,7 +53,6 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		// Reset badge for target
 		let badge = target.find('.floating.ui.red.label');
 		let user_id = Number($('#hidden-user-id').data('user_id'));
-		let chatroom_id = target.data('chatroom_id');
 		reset_unread(badge);
 		reset_db_unread(user_id, chatroom_id);
 
@@ -56,10 +68,19 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 			scroll_bottom(false, $('#messages'));
 		}, 500)
 
-		// Display users
-		$('.view-action').hide();
-		let current_chatroom_users = $(`.chatroom-user[data-chatroom_id = "${chatroom_id}"]`);
-		current_chatroom_users.fadeIn(500);
-
 	});
 }
+
+// Close dropdowns on scroll
+close_on_scroll = () => {
+	$('.ui.dropdown').click((click_event) => {
+		let old_scroll = $('#chatrooms').scrollTop();
+		$('#chatrooms').scroll((scroll_event) => {
+			let new_scroll = $('#chatrooms').scrollTop();
+			if (new_scroll <= old_scroll-100 || new_scroll >= old_scroll+100) {
+				$('#chatrooms').off('scroll');
+				$(scroll_event.target).find('.ui.dropdown').dropdown('hide');
+			};
+		});
+	});
+};

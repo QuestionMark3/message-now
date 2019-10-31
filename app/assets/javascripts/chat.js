@@ -8,6 +8,17 @@ submit_message = () => {
 	});
 };
 
+// Auto-scroll to bottom of message feed
+scroll_bottom = (animate, elements) => {
+	if (elements.length > 0) {
+		if (animate) {
+			elements.animate({scrollTop: elements[0].scrollHeight}, 250);
+		}
+		else {
+			elements.scrollTop(elements[0].scrollHeight);
+		}
+	}
+};
 
 // Style messages
 message_style = (current_chatroom) => {
@@ -49,18 +60,6 @@ message_style = (current_chatroom) => {
 		  	prev_message_cont.height(prev_message.height());
 		};
 	};
-};
-
-// Auto-scroll to bottom of message feed
-scroll_bottom = (animate, elements) => {
-	if (elements.length > 0) {
-		if (animate) {
-			elements.animate({scrollTop: elements[0].scrollHeight}, 250);
-		}
-		else {
-			elements.scrollTop(elements[0].scrollHeight);
-		}
-	}
 };
 
 // Format datetime on client side

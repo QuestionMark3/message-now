@@ -11,7 +11,7 @@ new_chatroom_btn = () => {
 
 		$('.profile').hide();
 		$('.view-action').hide();
-		$('.chatroom-user').hide();
+		$('.chatroom-options').hide();
 		$('.new-action').fadeIn(500);
 
 	});
@@ -25,10 +25,7 @@ user_checkbox = (el=$('.user.card>.content')) => {
 	el.click((event) => {
 
 		// Find target element
-		let target = $(event.target).parent();
-		if ($(event.target).attr('class') != 'content') {
-			target = $(event.target).parent().parent();
-		};
+		let target = $(event.target).closest('.user.card');
 
 		// Click hidden checkbox
 		$(`#chatroom-form :input[value=${target.data('user-id')}]`).click();

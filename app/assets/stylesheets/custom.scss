@@ -25,7 +25,8 @@
 .new-action,
 .input-checkbox,
 .view-action,
-.chatroom-user,
+.chatroom-options,
+.ui.chatroom-options.two.attached.buttons,
 .message-container {
 	display: none;
 }
@@ -96,11 +97,16 @@
 }
 
 #users, #chatrooms, #profile {
-	border-top: 0px;
+	border-top-style: none !important;
 }
 
-#users, #chatrooms, #chatroom-users {
+#users, #chatrooms {
 	overflow: auto;
+}
+
+.chatroom-options.chatroom-users {
+	overflow: auto;
+	border-top-style: none !important;
 }
 
 #users>.cards>.user.card,
@@ -108,6 +114,11 @@
 	background-color: #999;
 	color: #fff;
 	box-shadow: none;
+	cursor: pointer;
+}
+
+#chatrooms>.cards>.chatroom.card:hover{
+	background-color: #888;
 }
 
 .content>i.user.icon,
@@ -135,6 +146,7 @@
 
 #chatrooms>.cards>.chatroom.card.disabled {
 	background-color: #2185d0;
+	cursor:default;
 }
 
 .section {
@@ -146,4 +158,61 @@
 	color: #2185D0;
 	font-weight: 200;
 	margin: 10px;
+}
+
+.ellipsis.vertical.icon {
+	color: #999;
+}
+
+.disabled>.content .ellipsis.vertical.icon {
+	color: #fff;
+}
+
+.chatroom.card:hover>.content .ellipsis.vertical.icon {
+	color: #fff;
+}
+
+.chatroom.card:hover>.content .ellipsis.vertical.icon:hover {
+	color: #555;
+}
+
+.disabled:hover>.content .ellipsis.vertical.icon:hover {
+	color: #ccc;
+}
+
+.ui.dropdown {
+	float: right;
+}
+
+.change.item:hover,
+.add.item:hover{
+	color: #2185d0 !important;
+}
+
+.delete.item:hover,
+.remove.item:hover {
+	color: #db2828 !important;
+}
+
+.ui.two.top.attached.buttons {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.ui.two.attached.buttons>.ui.button {
+	border-radius: 0rem;
+}
+
+.two.attached>.ui.button:hover {
+	color: #fff;
+	background-color: #1279c6;
+}
+
+.two.attached>.ui.neg.button:hover {
+	color: #fff;
+	background-color: #db2828;
+}
+
+.content.chatroom-options.options {
+	flex-grow:0;
 }

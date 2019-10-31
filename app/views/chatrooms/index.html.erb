@@ -15,7 +15,7 @@
 
 		<!-- Main content -->
 		<div class="content" id="messages">
-		<% current_user.chatrooms.each do |chatroom| %>
+		<% @chatrooms.each do |chatroom| %>
 
 			<div class="ui large feed message-container" data-chatroom_id="<%= chatroom.id %>">
 
@@ -52,7 +52,7 @@
 		<div class="content">
 		<h2 class="ui inverted icon header">
 			<i class="exclamation circle icon"></i>
-			<% if current_user.chatrooms.length == 0 %>
+			<% if @chatrooms.length == 0 %>
 				Oops! It doesn't look like you have any chatrooms.
 			<% else %>
 				Please select a chatroom.
@@ -71,13 +71,13 @@
 	<div class="four wide column">
 	<div class="ui fluid raised card" id='side-options'>
 	
-		<%= render partial: 'profile', locals: {chatrooms: current_user.chatrooms} %> <!-- Profile -->
+		<%= render partial: 'profile', locals: {chatrooms: @chatrooms} %> <!-- Profile -->
 		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users} %> <!-- New chatroom menu -->
-		<%= render partial: 'view_chatrooms', locals: {user_chatrooms: @user_chatrooms} %> <!-- View chatrooms menu -->
+		<%= render partial: 'view_chatrooms', locals: {user_chatrooms: @user_chatrooms, length: @chatrooms.length} %> <!-- View chatrooms menu -->
 
 		<!-- Chatroom Users -->
-		<% current_user.chatrooms.each do |chatroom| %>
-			<%= render partial: 'chatroom_users', locals: {chatroom: chatroom, chatroom_id: chatroom.id} %>
+		<% @chatrooms.each do |chatroom| %>
+			<%= render partial: 'chatroom_options', locals: {chatroom: chatroom, chatroom_id: chatroom.id} %>
 		<% end %>
 		<!-- /Chatroom Users -->
 

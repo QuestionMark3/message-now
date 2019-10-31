@@ -4,7 +4,7 @@ class ChatroomsController < ApplicationController
 	def index
 		@users = User.all
 		@chatroom = Chatroom.new
-		@chatrooms = Chatroom.all
+		@chatrooms = current_user.chatrooms
 		@message = Message.new
 		@messages = Message.custom_display
 		unread_arr = ChatroomUser.where(user_id: current_user.id).pluck(:unread)
@@ -18,7 +18,7 @@ class ChatroomsController < ApplicationController
 		@chatroom.users << current_user
 		if @chatroom.save
 			flash[:success] = 'Chatroom was successfully created'
-			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom, 0),
+			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom, 0, @chatrooms.length),
 																												render_chatroom_users: render_chatroom_users(@chatroom, current_user),
 																												chatroom_id: @chatroom.id,
 																												user_ids: @chatroom.users.ids,
@@ -33,12 +33,12 @@ class ChatroomsController < ApplicationController
 		params.require(:chatroom).permit(:title, user_ids: [])
 	end
 
-	def render_chatroom(chatroom, unread)
-		render_to_string(partial: 'chatroom_card', locals: {chatroom: chatroom, unread: unread})
+	def render_chatroom(chatroom, unread, length)
+		render_to_string(partial: 'chatroom_card', locals: {chatroom: chatroom, unread: unread, length: length})
 	end
 
 	def render_chatroom_users(chatroom, current_user)
-		render_to_string(partial: 'chatroom_users', locals: {chatroom: chatroom, current_user: current_user})
+		render_to_string(partial: 'chatroom_options', locals: {chatroom: chatroom, current_user: current_user})
 	end
 
 end

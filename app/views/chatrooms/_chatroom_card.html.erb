@@ -1,14 +1,23 @@
-<% if unread === 0 %>
-	<% disp = 'none' %>
-<% else %>
-	<% disp = 'block' %>
-<% end %>
+<% disp = (unread === 0) ? 'none' : 'block' %>
+<% orientation = (length === chatroom.id || length === chatroom.id+1) ? 'bottom' : 'top' %>
+
 <!-- Chatroom -->
 <div class="chatroom card" data-chatroom_id="<%= chatroom.id %>">
-<div unselectable="on" class="content">
-	<i class="tv icon"></i>
-	<div class="floating ui red label" id="chatroom_<%= chatroom.id %>_badge" style="display:<%= disp %>"><%= unread %></div>
-	<b><%= chatroom.title %></b>
-</div>
+	<div unselectable="on" class="content">
+		<i class="tv icon"></i>
+		<div class="floating ui red label" id="chatroom_<%= chatroom.id %>_badge" style="display:<%= disp %>"><%= unread %></div>
+		<b><%= chatroom.title %></b>
+		
+		<div class="ui <%= orientation %> right pointing dropdown">
+	    <i class="ellipsis vertical icon"></i>
+	    <div class="menu">
+	      <div class="change item">Edit name</div>
+	      <div class="add item">Add users</div>
+	      <div class="remove item">Remove users</div>
+	      <div class="delete item">Leave</div>
+	    </div>
+	  </div>
+
+	</div>
 </div>
 <!-- /Chatroom -->

@@ -2,10 +2,10 @@
 
 <!-- Chatrooms -->
 <div class="content view-action" id="chatrooms">
-<div class="ui link cards">
+<div class="ui cards">
 <% user_chatrooms.each do |chatroom, unread| %>
 
-	<%= render partial: 'chatroom_card', locals: {chatroom: chatroom, unread: unread} %>
+	<%= render partial: 'chatroom_card', locals: {chatroom: chatroom, unread: unread, length: length} %>
 
 <% end %>
 </div>
