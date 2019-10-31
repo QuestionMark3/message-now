@@ -40,4 +40,7 @@ $(document).on('turbolinks:load', () => {
 	new_chatroom_btn();
 	user_checkbox();
 	submit_chatroom();
+
+	// Options
+	remove();
 })

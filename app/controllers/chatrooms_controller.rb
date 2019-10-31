@@ -29,6 +29,21 @@ class ChatroomsController < ApplicationController
 		end
 	end
 
+	def leave
+		chatroom = Chatroom.find(params[:format])
+
+		if chatroom.users.length > 1
+			if chatroom.users.delete(current_user.id)
+				ActionCable.server.broadcast 'option_channel', 	mode: 0,
+																												chatroom_id: chatroom.id,
+																												chatroom_users: chatroom.users.pluck(:id).zip(chatroom.users.pluck(:username))
+			end
+		else
+			chatroom.destroy
+		end
+
+	end
+
 	private
 	def chatroom_params
 		params.require(:chatroom).permit(:title, user_ids: [])

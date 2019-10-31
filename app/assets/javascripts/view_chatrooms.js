@@ -23,7 +23,9 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 	el.click((event) => {
 
 		// Ignore if ellipsis is clicked
-		if ($(event.target).hasClass('ellipsis')) {
+		ellipsis = $(event.target).hasClass('ellipsis');
+		item = $(event.target).hasClass('item');
+		if (ellipsis || item) {
 			return;
 		};
 

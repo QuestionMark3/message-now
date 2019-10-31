@@ -1,3 +1,4 @@
+<% leave = (chatroom.users.length > 1) ? "Leave" : "Remove" %>
 <% disp = (unread === 0) ? 'none' : 'block' %>
 <% orientation = (length === chatroom.id || length === chatroom.id+1) ? 'bottom' : 'top' %>
 
@@ -14,7 +15,7 @@
 	      <div class="change item">Edit name</div>
 	      <div class="add item">Add users</div>
 	      <div class="remove item">Remove users</div>
-	      <div class="delete item">Leave</div>
+	      <%= link_to leave, leave_path(chatroom), method: :put, class: "delete item", remote: true %>
 	    </div>
 	  </div>
 
