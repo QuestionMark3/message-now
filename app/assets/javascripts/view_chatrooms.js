@@ -10,13 +10,9 @@ view_chatrooms_btn = () => {
 		$('#new').removeClass('active');
 		view_btn.addClass('active');
 
-		$('.profile').hide();
-		$('.new-action').hide();
-		$('.chatroom-options').hide();
-		$('.view-action').fadeIn(500);
-
+		showMenu('view');
 	});
-}
+};
 
 // Buttons for selecting chatrooms
 chatroom_btns = ( el=$('.chatroom.card>.content') ) => {

@@ -77,7 +77,8 @@
 
 		<!-- Chatroom Users -->
 		<% @chatrooms.each do |chatroom| %>
-			<%= render partial: 'chatroom_options', locals: {chatroom: chatroom} %>
+			<%= render partial: 'chatroom_options', locals: {chatroom: chatroom,
+																			chatroom_users: chatroom.users.where('user_id != ?', current_user.id)} %>
 		<% end %>
 		<!-- /Chatroom Users -->
 

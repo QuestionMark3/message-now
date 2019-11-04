@@ -54,7 +54,7 @@ class ChatroomsController < ApplicationController
 	end
 
 	def render_chatroom_users(chatroom, current_user)
-		render_to_string(partial: 'chatroom_options', locals: {chatroom: chatroom, current_user: current_user})
+		render_to_string(partial: 'chatroom_options', locals: {chatroom: chatroom, chatroom_users: chatroom.users})
 	end
 
 end

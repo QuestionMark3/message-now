@@ -13,37 +13,52 @@ leave = (chatroom_id, users) => {
 };
 
 // Remove chatroom
-remove = () => {
-	$('.delete').click((event) =>{
-		// Remove chatroom
-		let chatroom_id = $(event.target).closest(`[data-chatroom_id]`).data('chatroom_id');
-		let chatroom = $(`.message-container[data-chatroom_id = ${chatroom_id}]`);
-		let chatroom_card = $(`.chatroom.card[data-chatroom_id = ${chatroom_id}]`);
-		let chatroom_options = $(`.chatroom-options[data-chatroom_id = ${chatroom_id}]`);
-		chatroom.remove();
-		chatroom_card.remove();
-		chatroom_options.remove();
-
-		// Switch to profile
-		$('.view-action').hide();
-		$('.profile').fadeIn(500);
-
-		// Decrease number chatrooms
-		let chat_length = $('.profile .statistic .value').eq(0);
-		chat_length.text(Number(chat_length.text()) - 1);
-
-		// Re-evaluate reach
-		let user_list = $(`.chatroom-users`).find('h2');
-		let users = [];
-		user_list.each(function(){
-			users.push($(this).text());
-		});
-		let reach = [...new Set(users)].length; 
-		$('.profile .statistic .value').eq(1).text(reach);
-
-		// Show dimmer
+remove = (el = $('.delete')) => {
+	el.click((event) =>{
+		chatroom_id = $(event.target).closest('[data-chatroom_id]').data('chatroom_id');
+		subtractNotif(chatroom_id);
+		showMenu('profile');
+		reduceChatCount();
+		$('.profile .statistic>.value').eq(1).text(reach());
+		$('.profile .statistic>.value').eq(2).text(newActiveChat());
+		removeChatroom(chatroom_id);
 		if (!$('.message-container').is(':visible')) {
 			$('#chatbox').dimmer('show');
 		};
 	});
+};
+
+removeChatroom = (chatroom_id) => {
+	$(`.message-container[data-chatroom_id = ${chatroom_id}]`).remove();
+	$(`.chatroom.card[data-chatroom_id = ${chatroom_id}]`).remove();
+	$(`.chatroom-options[data-chatroom_id = ${chatroom_id}]`).remove();
+};
+
+reduceChatCount = () => {
+	let chat_length = $('.profile .statistic>.value').eq(0);
+	chat_length.text(Number(chat_length.text()) - 1);
+};
+
+reach = () => {
+	let user_list = $(`.chatroom-users`).find('h2');
+	let users = [];
+	user_list.each(function(){
+		users.push($(this).text());
+	});
+	return [...new Set(users)].length; 
+};
+
+activeChat = () => {
+	let active_chat_el = $('.profile .statistic>.value').eq(2);
+	let active_chat_id;
+	let prev_count = 0;
+	$('.message-container').each(function(){
+		let msg_count = $(this).find('.segment').length;
+		if (msg_count >= prev_count) {
+			prev_count = msg_count;
+			active_chat_id = $(this).data('chatroom_id');
+		};
+	});
+	let active_chat = idToUsername(active_chat_id);
+	return (active_chat === '') ? 'None' : active_chat;
 };

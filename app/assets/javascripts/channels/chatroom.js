@@ -27,6 +27,9 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       // Append chatroom users container to vertical menu
       let actions = $('#actions');
       actions.before(data.render_chatroom_users);
+      let chat_options = $(`.chatroom-users[data-chatroom_id = ${data.chatroom_id}]`).eq(1);
+      let user_list_item = chat_options.find(`.list>.item[data-user_id = ${current_usr_id}]`);
+      user_list_item.remove();
 
       // Create subscription
       chat_subscribe( $('.message-container').last() );
@@ -43,6 +46,15 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       if (current_usr_id == data.creator_id) {
         chat_btn.children().last().children().click();
       };
+
+      // Allow chatroom to be removed
+      remove($(`[data-chatroom_id = ${data.chatroom_id}]`).find('.delete'));
+
+      // Increase chatroom count
+      let chat_length = $('.profile .statistic>.value').eq(0);
+      chat_length.text(Number(chat_length.text()) + 1);
+
+      // Auto-scroll
       scroll_bottom(true, $('#chatrooms'));
 	  };
   }

@@ -216,3 +216,11 @@
 .content.chatroom-options.options {
 	flex-grow:0;
 }
+
+.chatroom-users.user-head {
+	padding-bottom: 0px !important;
+}
+
+.chatroom-users>.list>.item.header {
+	margin: 5px 10px;
+}

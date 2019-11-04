@@ -7,16 +7,14 @@
 </div>
 
 <!-- Chatrooms -->
-<div class="content ui attached chatroom-options chatroom-users" data-chatroom_id="<%= chatroom.id %>">
+<div class="content user-head ui attached chatroom-options chatroom-users" data-chatroom_id="<%= chatroom.id %>">
 	<h1>Users:</h1>
 </div>
 <div class="content ui attached chatroom-options chatroom-users" data-chatroom_id="<%= chatroom.id %>">
 <div class="ui list">
-<% chatroom.users.each do |user| %>
+<% chatroom_users.each do |user| %>
 
-	<% if user != current_user %>
-		<h2 class="item header"><%= user.username %></h2>
-	<% end %>
+	<h2 class="item header" data-user_id="<%= user.id %>"><%= user.username %></h2>
 
 <% end %>
 </div>
