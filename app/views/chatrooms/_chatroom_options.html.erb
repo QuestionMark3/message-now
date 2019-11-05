@@ -1,8 +1,23 @@
 <% leave = (chatroom.users.length > 1) ? "Leave" : "Remove" %>
-<h2 class="chatroom-options" id="users-header" data-chatroom_id="<%= chatroom.id %>"><%= chatroom.title %></h2> <!-- Header -->
+
+<div class="chatroom-name" data-chatroom_id="<%= chatroom.id %>">
+	<%= form_for(chatroom, html: {class: "ui reply form", role: "form"},
+													url: retitle_path(chatroom.id)) do |f| %>
+		<div class="field">
+		<div class="ui fluid input">
+
+			<%= f.text_field :title, placeholder: "New chatroom name", id: "edit_chatroom_title_#{chatroom.id}", class: "edit_chatroom_title" %>
+			<%= f.button class: "button", class: "rename-form" %>
+
+		</div>
+		</div>
+	<% end %>
+</div>
+
+<h2 class="chatroom-options users-header" data-chatroom_id="<%= chatroom.id %>"><%= chatroom.title %></h2> <!-- Header -->
 
 <div class="ui chatroom-options two top attached buttons" data-chatroom_id="<%= chatroom.id %>">
-	<button class="ui button">Edit name</button>
+	<button class="ui edit button">Edit name</button>
 	<%= link_to leave, leave_path(chatroom), method: :put, class: "ui delete neg button", remote: true %>
 </div>
 
@@ -10,6 +25,7 @@
 <div class="content user-head ui attached chatroom-options chatroom-users" data-chatroom_id="<%= chatroom.id %>">
 	<h1>Users:</h1>
 </div>
+
 <div class="content ui attached chatroom-options chatroom-users" data-chatroom_id="<%= chatroom.id %>">
 <div class="ui list">
 <% chatroom_users.each do |user| %>

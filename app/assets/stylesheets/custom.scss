@@ -27,7 +27,9 @@
 .view-action,
 .chatroom-options,
 .ui.chatroom-options.two.attached.buttons,
-.message-container {
+.message-container,
+.rename-form,
+.chatroom-name {
 	display: none;
 }
 
@@ -87,7 +89,7 @@
 
 #view-header,
 #pro-header,
-#users-header {
+.users-header {
 	color: #fff;
 	padding: 14px;
 	margin: 0px;
@@ -134,8 +136,15 @@
 	user-select: none;
 }
 
-#chatroom-form {
+.chatroom-form {
 	margin: 14px;
+}
+
+.chatroom-name {
+	margin-top: 10.43px;
+	margin-bottom: 10.42px;
+	margin-left: 10.42px;
+	margin-right: 10.42px;
 }
 
 #new.disabled, #new:active,
@@ -184,7 +193,7 @@
 	float: right;
 }
 
-.change.item:hover,
+.edit.item:hover,
 .add.item:hover{
 	color: #2185d0 !important;
 }

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	root 'chatrooms#index'
 	post 'chatroom' => 'chatrooms#create'
 	put 'leave' => 'chatrooms#leave'
+	patch 'retitle' => 'chatrooms#rename'
 
 	# User route
 	get 'signup' => 'users#new'

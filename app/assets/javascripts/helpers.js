@@ -3,6 +3,7 @@ showMenu = (mode) => {
 	$('.new-action').hide();
 	$('.view-action').hide();
 	$('.chatroom-options').hide();
+	$('.chatroom-name').hide();
 	let el;
 	switch (mode) {
 		case 'profile':
@@ -14,8 +15,8 @@ showMenu = (mode) => {
 		case 'view':
 			el = $('.view-action');
 			break;
-		case 'options':
-			el = $('.chatroom-options');
+		default:
+			el = $(`.chatroom-options[data-chatroom_id = ${mode}]`);
 			break;
 	};
 	el.fadeIn(500);
@@ -30,4 +31,8 @@ subtractNotif = (chatroom_id) => {
 	let chat_notif = $(`#chatroom_${chatroom_id}_badge`).text();
 	let total_notif = $('#chatrooms_badge');
 	total_notif.text(Number(total_notif.text()) - Number(chat_notif));
+};
+
+isVisible = (el) => {
+	return (el.css('display') === 'none') ? false : true;
 };

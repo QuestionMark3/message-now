@@ -43,4 +43,6 @@ $(document).on('turbolinks:load', () => {
 
 	// Options
 	remove();
+	submitRename();
+	rename();
 })

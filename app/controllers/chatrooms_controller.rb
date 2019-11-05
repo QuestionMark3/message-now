@@ -10,7 +10,6 @@ class ChatroomsController < ApplicationController
 		unread_arr = ChatroomUser.where(user_id: current_user.id).pluck(:unread)
 		@total_unread = unread_arr.sum
 		@user_chatrooms = current_user.chatrooms.zip(unread_arr)
-
 	end
 
 	def create
@@ -31,7 +30,6 @@ class ChatroomsController < ApplicationController
 
 	def leave
 		chatroom = Chatroom.find(params[:format])
-
 		if chatroom.users.length > 1
 			if chatroom.users.delete(current_user.id)
 				ActionCable.server.broadcast 'option_channel', 	mode: 0,
@@ -41,7 +39,13 @@ class ChatroomsController < ApplicationController
 		else
 			chatroom.destroy
 		end
+	end
 
+	def rename
+		chatroom = Chatroom.find(params[:format])
+		if chatroom.update(chatroom_params)
+			redirect_to root_path
+		end
 	end
 
 	private
