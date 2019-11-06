@@ -28,11 +28,11 @@ user_checkbox = (el=$('.user.card>.content')) => {
 		$(`#chatroom-form :input[value=${target.data('user-id')}]`).click();
 
 		// Toggle color
-		if (target.css('background-color') == 'rgb(153, 153, 153)') {
+		if (target.css('background-color') == 'rgb(136, 136, 136)') {
 			target.css('background-color', '#2185d0');
 		}
 		else {
-			target.css('background-color', '#999');
+			target.removeAttr('style');
 		};
 
 	});

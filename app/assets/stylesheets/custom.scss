@@ -111,15 +111,14 @@
 	border-top-style: none !important;
 }
 
-#users>.cards>.user.card,
-#chatrooms>.cards>.chatroom.card {
+#side-options .cards>.card {
 	background-color: #999;
 	color: #fff;
 	box-shadow: none;
 	cursor: pointer;
 }
 
-#chatrooms>.cards>.chatroom.card:hover{
+#side-options .cards>.card:hover {
 	background-color: #888;
 }
 
