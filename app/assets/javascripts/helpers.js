@@ -20,6 +20,8 @@ showMenu = (mode) => {
 			break;
 	};
 	el.fadeIn(500);
+
+	$('.edit.button').removeClass('blue');
 };
 
 

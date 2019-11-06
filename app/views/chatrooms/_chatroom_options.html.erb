@@ -2,7 +2,8 @@
 
 <div class="chatroom-name" data-chatroom_id="<%= chatroom.id %>">
 	<%= form_for(chatroom, html: {class: "ui reply form", role: "form"},
-													url: retitle_path(chatroom.id)) do |f| %>
+													url: retitle_path(chatroom.id),
+												remote: true) do |f| %>
 		<div class="field">
 		<div class="ui fluid input">
 

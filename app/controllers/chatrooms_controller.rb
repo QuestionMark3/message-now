@@ -44,7 +44,9 @@ class ChatroomsController < ApplicationController
 	def rename
 		chatroom = Chatroom.find(params[:format])
 		if chatroom.update(chatroom_params)
-			redirect_to root_path
+			ActionCable.server.broadcast 'option_channel',  mode: 1,
+																											chatroom_id: chatroom.id,
+																											new_title: chatroom.title
 		end
 	end
 

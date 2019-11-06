@@ -19,7 +19,8 @@
 
 // jQuery to be executed after DOM loads
 $(document).on('turbolinks:load', () => {
-	
+	emptyChatroomNames();
+
 	// Flash messages
 	message_close();
 
@@ -43,6 +44,6 @@ $(document).on('turbolinks:load', () => {
 
 	// Options
 	remove();
+	renameListener();
 	submitRename();
-	rename();
 })
