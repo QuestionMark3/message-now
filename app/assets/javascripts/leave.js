@@ -20,7 +20,7 @@ remove = (el = $('.delete')) => {
 		showMenu('profile');
 		reduceChatCount();
 		$('.profile .statistic>.value').eq(1).text(reach());
-		$('.profile .statistic>.value').eq(2).text(newActiveChat());
+		$('.profile .statistic>.value').eq(2).text(activeChat());
 		removeChatroom(chatroom_id);
 		if (!$('.message-container').is(':visible')) {
 			$('#chatbox').dimmer('show');

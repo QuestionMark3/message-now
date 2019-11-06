@@ -8,6 +8,7 @@ submitRename = (chatroom) => {
 			$(event.target).siblings('.rename-form').click();
 			event.target.value = "";
 			hideRenameForm(form, header, edit);
+			$('.edit.button').removeClass('blue');
 		};
 	});
 };
