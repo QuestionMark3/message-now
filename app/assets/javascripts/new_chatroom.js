@@ -25,7 +25,7 @@ user_checkbox = (el=$('.user.card>.content')) => {
 		let target = $(event.target).closest('.user.card');
 
 		// Click hidden checkbox
-		$(`#chatroom-form :input[value=${target.data('user-id')}]`).click();
+		$(`.chatroom-form :input[value=${target.data('user-id')}]`).click();
 
 		// Toggle color
 		if (target.css('background-color') == 'rgb(136, 136, 136)') {
@@ -54,5 +54,5 @@ submit_chatroom = () => {
 };
 
 uncheck = () => {
-	$(`#chatroom-form :input`).prop("checked", false);
+	$(`.chatroom-form :input`).prop("checked", false);
 };
