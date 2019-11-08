@@ -7,7 +7,7 @@ submitRename = (chatroom) => {
 			let edit = $(`[data-chatroom_id=${chatroom_id}]>.edit.button`);
 			$(event.target).siblings('.rename-form').click();
 			event.target.value = "";
-			hideRenameForm(form, header, edit);
+			hideRenameForm(chatroom_id);
 			$('.edit.button').removeClass('blue');
 		};
 	});
@@ -38,25 +38,33 @@ rename = (chatroom_id, title) => {
 
 toggleRename = (chatroom_id) => {
 	let header = $(`.users-header[data-chatroom_id=${chatroom_id}]`);
-	let form = $(`.chatroom-name[data-chatroom_id=${chatroom_id}]`);
-	let edit = $(`[data-chatroom_id=${chatroom_id}]>.edit.button`);
-
+	$('.add.button').removeClass('blue');
+	$('.remove.button').removeClass('red');
 	if (isVisible(header)) {
-		showRenameForm(form, header);
-		edit.addClass('blue');
+		showRenameForm(chatroom_id);
+		$(`.chatroom-users[data-chatroom_id = ${chatroom_id}]`).fadeIn(500);
 	}
 	else {
-		hideRenameForm(form, header);
-		edit.removeClass('blue');
+		hideRenameForm(chatroom_id);
 	};
 };
 
-showRenameForm = (form, header, edit) => {
+showRenameForm = (chatroom_id) => {
+	let header = $(`.users-header[data-chatroom_id=${chatroom_id}]`);
+	let form = $(`.chatroom-name[data-chatroom_id=${chatroom_id}]`);
+	let edit = $(`[data-chatroom_id=${chatroom_id}]>.edit.button`);
 	header.hide();
 	form.fadeIn(500);
+	edit.addClass('blue');
+	hideAddOrRemMenu(chatroom_id, 'add');
+	hideAddOrRemMenu(chatroom_id, 'remove');
 };
 
-hideRenameForm = (form, header, edit) => {
+hideRenameForm = (chatroom_id) => {
+	let header = $(`.users-header[data-chatroom_id=${chatroom_id}]`);
+	let form = $(`.chatroom-name[data-chatroom_id=${chatroom_id}]`);
+	let edit = $(`[data-chatroom_id=${chatroom_id}]>.edit.button`);
+	edit.removeClass('blue');
 	form.hide();
 	header.fadeIn(500);
 };

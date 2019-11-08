@@ -1,24 +1,11 @@
-<!-- Form -->
-<div class="new-action">
-<%= form_for(chatroom, html: {class: "ui reply form chatroom-form", role: "form"},
-												url: chatroom_path,
-												remote: true) do |f| %>
-	<div class="field">
-	<div class="ui fluid input">
-
-		<%= f.text_field :title, placeholder: "Chatroom name" %>
-		
-		<%= f.collection_check_boxes :user_ids, User.all, :id, :username do |cb| %>
-			<% cb.label(class: 'input-checkbox') {cb.check_box(class: 'checkbox') + cb.text} %>
-		<% end %>
-
-		<%= f.button class: "button", id: "room-form" %>
-
-	</div>
-	</div>
-<% end %>
-</div>
-<!-- /Form -->
+<%= render partial: "users/checkbox_form", locals: {chatroom: chatroom,
+																								 action_name: "new-action",
+																							 			 id_name: "chatroom-form",
+																									class_name: "chatroom-form",
+																											number: 0,
+																												 url: chatroom_path,
+																											 users: users,
+																									text_field: true} %>
 
 <!-- Users -->
 <div class="content new-action" id="users">
@@ -26,9 +13,7 @@
 <% users.each do |user| %>
 
 	<!-- User -->
-	<% if user != current_user %>
-		<%= render partial: 'users/user_card', locals: {user: user} %>
-	<% end %>
+	<%= render partial: 'users/user_card', locals: {user: user} %>
 	<!-- /User -->
 
 <% end %>

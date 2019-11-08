@@ -24,12 +24,22 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
 	    let dta = `data-chatroom_id="${data.chatroom_id}"`;
 	    $('#messages').append(`<div ${clss} ${dta}></div>`);
 
-      // Append chatroom users container to vertical menu
+      // Append chatroom options container to vertical menu
       let actions = $('#actions');
       actions.before(data.render_chatroom_users);
       let chat_options = $(`.chatroom-users[data-chatroom_id = ${data.chatroom_id}]`).eq(1);
       let user_list_item = chat_options.find(`.list>.item[data-user_id = ${current_usr_id}]`);
       user_list_item.remove();
+
+      // Add event listeners
+      addOrRemListener('add');
+      addOrRemListener('remove');
+      checkbox('add');
+      checkbox('remove');
+      submitRename();
+      renameListener();
+      emptyChatroomNames();
+      uncheckAll();
 
       // Create subscription
       chat_subscribe( $('.message-container').last() );

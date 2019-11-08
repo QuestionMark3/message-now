@@ -20,7 +20,8 @@
 // jQuery to be executed after DOM loads
 $(document).on('turbolinks:load', () => {
 	emptyChatroomNames();
-
+	uncheckAll();
+	
 	// Flash messages
 	message_close();
 
@@ -39,11 +40,16 @@ $(document).on('turbolinks:load', () => {
 
 	// New actions
 	new_chatroom_btn();
-	user_checkbox();
+	checkbox('new');
 	submit_chatroom();
 
 	// Options
 	remove();
 	renameListener();
 	submitRename();
+	addOrRemListener('add');
+	addOrRemListener('remove');
+	checkbox('add');
+	checkbox('remove');
+
 })

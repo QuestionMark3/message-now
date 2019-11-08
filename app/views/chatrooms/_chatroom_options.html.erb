@@ -38,7 +38,12 @@
 </div>
 <!-- /Chatrooms -->
 
+<!-- Add-remove users -->
+<%= render partial: 'users/add_rem_users', locals: {chatroom: chatroom, users: other_users, mode: 'add'} %>
+<%= render partial: 'users/add_rem_users', locals: {chatroom: chatroom, users: chatroom_users, mode: 'remove'} %>
+<!-- /Add-remove users -->
+
 <div class="ui chatroom-options two bottom attached buttons" data-chatroom_id="<%= chatroom.id %>">
-	<button class="ui button">Add users</button>
-	<button class="ui neg button">Remove users</button>
+	<button class="ui add button">Add users</button>
+	<button class="ui neg remove button">Remove users</button>
 </div>

@@ -3,8 +3,13 @@ Rails.application.routes.draw do
 	# Chatroom route
 	root 'chatrooms#index'
 	post 'chatroom' => 'chatrooms#create'
+
+	# Chatroom option routes
 	put 'leave' => 'chatrooms#leave'
 	patch 'retitle' => 'chatrooms#rename'
+	patch 'add' => 'chatrooms#add_users'
+	patch 'remove' => 'chatrooms#remove_users'
+
 
 	# User route
 	get 'signup' => 'users#new'

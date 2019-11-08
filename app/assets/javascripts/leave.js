@@ -32,6 +32,7 @@ removeChatroom = (chatroom_id) => {
 	$(`.message-container[data-chatroom_id = ${chatroom_id}]`).remove();
 	$(`.chatroom.card[data-chatroom_id = ${chatroom_id}]`).remove();
 	$(`.chatroom-options[data-chatroom_id = ${chatroom_id}]`).remove();
+	$(`#add-rem-users-${chatroom_id}`).remove();
 };
 
 reduceChatCount = () => {

@@ -16,6 +16,6 @@ App.user = App.cable.subscriptions.create("UserChannel", {
     $('#room-form').before(data.render_checkbox);
     // Make user button clickable
     let user_btn = $('#users>.ui.link.cards').children().last();
-    user_checkbox(user_btn);
+    checkbox(user_btn, '#2185d0');
   }
 });

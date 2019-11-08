@@ -1,0 +1,18 @@
+<% url = (mode == 'add') ? add_path : remove_path; %>
+<div class="content ui attached chatroom-options <%= mode %>" id="<%= mode %>-users-<%= chatroom.id %>">
+<%= render partial: "users/checkbox_form", locals: {chatroom: chatroom,
+																							 	 action_name: "#{mode}-action",
+																							 	 		 id_name: "#{mode}-form-#{chatroom.id}",
+																									class_name: "#{mode}-form",
+																											number: chatroom.id,
+																												 url: url,
+																											 users: users,
+																									text_field: false} %>
+<div class="ui cards">
+<% users.each do |user| %>
+
+	<%= render partial: 'users/user_card', locals: {user: user} %>
+
+<% end %>
+</div>
+</div>

@@ -1,0 +1,23 @@
+<!-- Form -->
+<div class="<%= action_name %>">
+<%= form_for(chatroom, html: {id: id_name, class: "ui reply form #{class_name}", role: "form"},
+												url: url,
+										 remote: true) do |f| %>
+	<div class="field">
+	<div class="ui fluid input">
+
+		<% if text_field %>
+			<%= f.text_field :title, placeholder: "Chatroom name" %>
+		<% end %>
+		
+		<%= f.collection_check_boxes :user_ids, users, :id, :username do |cb| %>
+			<% cb.label(class: 'input-checkbox') {cb.check_box(class: 'checkbox') + cb.text} %>
+		<% end %>
+
+		<%= f.button class: "button room-form-#{number}" %>
+
+	</div>
+	</div>
+<% end %>
+</div>
+<!-- /Form -->
