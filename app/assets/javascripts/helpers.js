@@ -4,6 +4,7 @@ showMenu = (mode) => {
 	$('.view-action').hide();
 	$('.chatroom-options').hide();
 	$('.chatroom-name').hide();
+	$('.confirm.button').hide();
 	let el;
 	switch (mode) {
 		case 'profile':
@@ -36,8 +37,9 @@ uncheck = form => {
 };
 
 // Checkbox functionality
-checkbox = (mode) => {
+checkbox = (mode, element='') => {
 	let [el, color, form_sibling] = getCardVarsFromName(mode);
+	el = (element === '') ? el : element;
 	el.click(event => {
 		let target = $(event.target).closest('.user.card');
 		let form_parent = target.closest(form_sibling).siblings(`.${mode}-action`);

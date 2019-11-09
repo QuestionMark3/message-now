@@ -25,20 +25,41 @@ toggleAddOrRemMenu = (chatroom_id, mode) => {
 	};
 };
 
+btnIfCheck = mode => {
+	let card = $(`.${mode}>.cards>.user.card>.content`);
+	$(card).click(event => {
+		let ancestor = $(event.target).closest(`.${mode}.chatroom-options`)
+		let chatroom_id = ancestor.attr('id').split('-')[2];
+		let form = $(`#${mode}-form-${chatroom_id}`);
+		let confirm = $(`#${mode}-confirm-${chatroom_id}`);
+		confirm.toggle(anyChecks(form));
+	});
+};
+
+anyChecks = (form) => {
+	let checks = (form.find('.checkbox:checked').length === 0) ? false : true;
+	return checks;
+};
+
 showAddOrRemMenu = (chatroom_id, mode) => {
 	let [alt_mode, alt_color, color] = (mode === 'add') ? ['remove', 'red', 'blue'] : ['add', 'blue', 'red'];
 	let menu = $(`#${mode}-users-${chatroom_id}`);
 	let btn = $(`[data-chatroom_id = ${chatroom_id}]`).find(`.${mode}.button`);
 	let alt_btn = $(`[data-chatroom_id = ${chatroom_id}]`).find(`.${mode}.button`);
+	let form = $(`#${mode}-form-${chatroom_id}`);
+	let confirm = $(`#${mode}-confirm-${chatroom_id}`);
 	menu.fadeIn(500);
 	btn.addClass(color);
 	alt_btn.removeClass(alt_color);
+	confirm.toggle(anyChecks(form));
 };
 
 hideAddOrRemMenu = (chatroom_id, mode) => {
 	let menu = $(`#${mode}-users-${chatroom_id}`);
 	let color = (mode === 'add') ? 'blue' : 'red';
 	let btn = $(`[data-chatroom_id = ${chatroom_id}]`).find(`.${mode}.button`);
+	let confirm = $(`#${mode}-confirm-${chatroom_id}`);
 	menu.hide();
+	confirm.hide();
 	btn.removeClass(color);
 };

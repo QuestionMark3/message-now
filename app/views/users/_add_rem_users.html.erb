@@ -1,4 +1,5 @@
-<% url = (mode == 'add') ? add_path : remove_path; %>
+<% url = (mode === 'add') ? add_path : remove_path; %>
+<% btn_type = (mode === 'add') ? 'positive' : 'negative'; %>
 <div class="content ui attached chatroom-options <%= mode %>" id="<%= mode %>-users-<%= chatroom.id %>">
 <%= render partial: "users/checkbox_form", locals: {chatroom: chatroom,
 																							 	 action_name: "#{mode}-action",
@@ -16,3 +17,4 @@
 <% end %>
 </div>
 </div>
+<button class="<%= btn_type %> ui confirm button" id="<%= mode %>-confirm-<%= chatroom.id %>">Confirm!</button>

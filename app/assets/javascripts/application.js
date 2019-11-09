@@ -51,5 +51,7 @@ $(document).on('turbolinks:load', () => {
 	addOrRemListener('remove');
 	checkbox('add');
 	checkbox('remove');
+	btnIfCheck('add');
+	btnIfCheck('remove');
 
 })
