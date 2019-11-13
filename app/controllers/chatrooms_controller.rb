@@ -1,5 +1,7 @@
 class ChatroomsController < ApplicationController
 	before_action :require_user
+	before_action :set_chatroom, except: [:index, :create]
+	before_action :set_add_rem_users, only: [:add_users, :remove_users]
 
 	def index
 		@users = User.all
@@ -31,30 +33,46 @@ class ChatroomsController < ApplicationController
 	end
 
 	def leave
-		chatroom = Chatroom.find(params[:format])
-		if chatroom.users.length > 1
-			if chatroom.users.delete(current_user.id)
+		if @chatroom.users.length > 1
+			if @chatroom.users.delete(current_user.id)
 				ActionCable.server.broadcast 'option_channel', 	mode: 0,
-																												chatroom_id: chatroom.id,
-																												chatroom_users: chatroom.users.pluck(:id).zip(chatroom.users.pluck(:username))
+																												chatroom_id: @chatroom.id,
+																												chatroom_users: @chatroom.users.pluck(:id).zip(@chatroom.users.pluck(:username))
 			end
 		else
-			chatroom.destroy
+			@chatroom.destroy
 		end
 	end
 
 	def rename
-		chatroom = Chatroom.find(params[:format])
-		if chatroom.update(chatroom_params)
+		if @chatroom.update(chatroom_params)
 			ActionCable.server.broadcast 'option_channel',  mode: 1,
-																											chatroom_id: chatroom.id,
-																											new_title: chatroom.title
+																											chatroom_id: @chatroom.id,
+																											new_title: @chatroom.title
 		end
+	end
+
+	def add_users
+		@chatroom.users << @users
+		redirect_to root_path
+	end
+
+	def remove_users
+		@chatroom.users.delete(@users)
+		redirect_to root_path
 	end
 
 	private
 	def chatroom_params
 		params.require(:chatroom).permit(:title, user_ids: [])
+	end
+
+	def set_add_rem_users
+		@users = User.where('id IN (?)', chatroom_params[:user_ids])
+	end
+
+	def set_chatroom
+		@chatroom = Chatroom.find(params[:format])
 	end
 
 	def render_chatroom(chatroom, unread, length)

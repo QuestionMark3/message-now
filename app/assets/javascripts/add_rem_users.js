@@ -25,6 +25,15 @@ toggleAddOrRemMenu = (chatroom_id, mode) => {
 	};
 };
 
+addRemSubmit = mode => {
+	btn = (mode == 'add') ? $('.positive.confirm') : $('.negative.confirm');
+	btn.click(event => {
+		let chatroom_id = $(event.target).attr('id').split('-')[2];
+		let hidden_btn = $(`.${mode}-action #room-form-${chatroom_id}`);
+		$(hidden_btn).click();
+	});
+};
+
 btnIfCheck = mode => {
 	let card = $(`.${mode}>.cards>.user.card>.content`);
 	$(card).click(event => {

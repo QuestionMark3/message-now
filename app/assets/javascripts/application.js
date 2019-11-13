@@ -53,5 +53,7 @@ $(document).on('turbolinks:load', () => {
 	checkbox('remove');
 	btnIfCheck('add');
 	btnIfCheck('remove');
+	addRemSubmit('add');
+	addRemSubmit('remove');
 
 })

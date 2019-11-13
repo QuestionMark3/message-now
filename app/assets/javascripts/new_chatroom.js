@@ -18,7 +18,7 @@ new_chatroom_btn = () => {
 submit_chatroom = () => {
 	$('#chatroom_title').on('keydown', (event) => {
 		if (event.target == document.activeElement && event.which == 13) {
-			$('.room-form-0').click();
+			$('#room-form-0').click();
 			// Clear text field
 			event.target.value = "";
 			// Highlight appropriate chatroom button

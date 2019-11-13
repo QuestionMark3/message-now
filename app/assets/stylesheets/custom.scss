@@ -112,6 +112,10 @@
 	border-top-style: none !important;
 }
 
+.user-head {
+	flex-shrink: 0;
+}
+
 #side-options .cards>.card {
 	background-color: #999;
 	color: #fff;
