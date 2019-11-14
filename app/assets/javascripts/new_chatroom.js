@@ -21,8 +21,6 @@ submit_chatroom = () => {
 			$('#room-form-0').click();
 			// Clear text field
 			event.target.value = "";
-			// Highlight appropriate chatroom button
-			$('.user.card').css('background-color', '#999');
 			//Uncheck all checkboxes
 			uncheckAll();
 		};

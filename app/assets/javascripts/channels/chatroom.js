@@ -32,10 +32,12 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       user_list_item.remove();
 
       // Add event listeners
-      addOrRemListener('add');
-      addOrRemListener('remove');
-      checkbox('add');
-      checkbox('remove');
+      addOrRemListener('add', data.chatroom_id);
+      addOrRemListener('remove', data.chatroom_id);
+      checkbox('add', $(`#add-users-${data.chatroom_id} .ui.cards>.card>.content`));
+      checkbox('remove', $(`#remove-users-${data.chatroom_id} .ui.cards>.card>.content`));
+      btnIfCheck('add', data.chatroom_id);
+      btnIfCheck('remove', data.chatroom_id);
       submitRename();
       renameListener();
       emptyChatroomNames();

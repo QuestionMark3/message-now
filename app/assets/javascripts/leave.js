@@ -7,7 +7,7 @@ leave = (chatroom_id, users) => {
 		let user_id = zip[0];
 		let username = zip[1];
 		if (user_id !== current_user_id) {
-			user_list.append(`<h2 class="item header">${username}</h2>`);
+			user_list.append(`<h2 class="item header" [data-user_id = "${user_id}"]>${username}</h2>`);
 		};
 	});
 };

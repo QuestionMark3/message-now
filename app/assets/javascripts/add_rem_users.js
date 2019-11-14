@@ -1,5 +1,6 @@
-addOrRemListener = (mode) => {
-	$(`.${mode}.button`).click((event) => {
+addOrRemListener = (mode, chatroom_id='') => {
+	parent = (chatroom_id === '') ? '' : `[data-chatroom_id = ${chatroom_id}]`;
+	$(`${parent} .${mode}.button`).click((event) => {
 		let chatroom_id = $(event.target).parents('[data-chatroom_id]').data('chatroom_id');
 		toggleAddOrRemMenu(chatroom_id, mode);
 	});
@@ -34,8 +35,9 @@ addRemSubmit = mode => {
 	});
 };
 
-btnIfCheck = mode => {
+btnIfCheck = (mode, chatroom_id='') => {
 	let card = $(`.${mode}>.cards>.user.card>.content`);
+	card = (chatroom_id === '') ? card : $(`#${mode}-users-${chatroom_id}`).find(card);
 	$(card).click(event => {
 		let ancestor = $(event.target).closest(`.${mode}.chatroom-options`)
 		let chatroom_id = ancestor.attr('id').split('-')[2];
