@@ -1,30 +1,39 @@
 // Remove user from chatroom
-leave = (chatroom_id, users) => {
+leave = (chatroom_id, user_id) => {
 	let current_user_id = $('#hidden-user-id').data('user_id');
+	if (current_user_id === user_id) {
+		return;
+	};
 	let user_list = $(`.chatroom-users[data-chatroom_id = ${chatroom_id}]`).children('.list');
-	user_list.empty();
-	users.forEach(function(zip){
-		let user_id = zip[0];
-		let username = zip[1];
-		if (user_id !== current_user_id) {
-			user_list.append(`<h2 class="item header" [data-user_id = "${user_id}"]>${username}</h2>`);
-		};
-	});
+	let list_item = $(`.item.header[data-user_id = "${user_id}"]`);
+	let add_cards = $(`#add-users-${chatroom_id}>.cards`);
+	let rem_card = $(`#remove-users-${chatroom_id}>.cards>[data-user-id = ${user_id}]`).removeAttr('style');
+	let card_HTML = rem_card[0].outerHTML;
+	list_item.remove();
+	rem_card.remove();
+	add_cards.append(card_HTML);
+	addCheckbox('add', chatroom_id, removeCheckbox('remove', chatroom_id, user_id));
+	checkbox('add', add_cards.find(`[data-user-id = ${user_id}]>.content`));
+	btnIfCheck('add', chatroom_id, user_id);
+};
+
+remove = (chatroom_id) => {
+	subtractNotif(chatroom_id);
+	showMenu('profile');
+	reduceChatCount();
+	$('.profile .statistic>.value').eq(1).text(reach());
+	$('.profile .statistic>.value').eq(2).text(activeChat());
+	removeChatroom(chatroom_id);
+	if (!$('.message-container').is(':visible')) {
+		$('#chatbox').dimmer('show');
+	};
 };
 
 // Remove chatroom
-remove = (el = $('.delete')) => {
+removeListener = (el = $('.delete')) => {
 	el.click((event) =>{
 		chatroom_id = $(event.target).closest('[data-chatroom_id]').data('chatroom_id');
-		subtractNotif(chatroom_id);
-		showMenu('profile');
-		reduceChatCount();
-		$('.profile .statistic>.value').eq(1).text(reach());
-		$('.profile .statistic>.value').eq(2).text(activeChat());
-		removeChatroom(chatroom_id);
-		if (!$('.message-container').is(':visible')) {
-			$('#chatbox').dimmer('show');
-		};
+		remove(chatroom_id);
 	});
 };
 

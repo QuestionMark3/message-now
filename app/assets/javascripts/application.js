@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', () => {
 	submit_chatroom();
 
 	// Options
-	remove();
+	removeListener();
 	renameListener();
 	submitRename();
 	addOrRemListener('add');

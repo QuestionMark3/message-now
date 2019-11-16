@@ -1,3 +1,14 @@
+removeUsers = (chatroom_id, user_ids) => {
+	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
+	showMenu(chatroom_id);
+	user_ids.forEach(user_id => {
+		leave(chatroom_id, user_id);
+	});
+	if ($.inArray(current_usr_id, user_ids) >= 0) {
+		remove(chatroom_id);
+	};
+};
+
 addOrRemListener = (mode, chatroom_id='') => {
 	parent = (chatroom_id === '') ? '' : `[data-chatroom_id = ${chatroom_id}]`;
 	$(`${parent} .${mode}.button`).click((event) => {
@@ -35,10 +46,11 @@ addRemSubmit = mode => {
 	});
 };
 
-btnIfCheck = (mode, chatroom_id='') => {
-	let card = $(`.${mode}>.cards>.user.card>.content`);
+btnIfCheck = (mode, chatroom_id='', user_id='') => {
+	let card = $(`.${mode}>.cards>.user.card`);
 	card = (chatroom_id === '') ? card : $(`#${mode}-users-${chatroom_id}`).find(card);
-	$(card).click(event => {
+	card = (user_id === '') ? card : card.filter(`[data-user-id = ${user_id}]`);
+	$(card.children('.content')).click(event => {
 		let ancestor = $(event.target).closest(`.${mode}.chatroom-options`)
 		let chatroom_id = ancestor.attr('id').split('-')[2];
 		let form = $(`#${mode}-form-${chatroom_id}`);

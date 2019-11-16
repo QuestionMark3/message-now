@@ -27,19 +27,26 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       // Append chatroom options container to vertical menu
       let actions = $('#actions');
       actions.before(data.render_chatroom_users);
-      let chat_options = $(`.chatroom-users[data-chatroom_id = ${data.chatroom_id}]`).eq(1);
+      let chat_options = $(`.chatroom-users[data-chatroom_id = ${data.chatroom_id}]`);
       let user_list_item = chat_options.find(`.list>.item[data-user_id = ${current_usr_id}]`);
+      let user_card = $(`#remove-users-${data.chatroom_id}>.cards>[data-user-id = ${current_usr_id}]`);
       user_list_item.remove();
+      user_card.remove();
 
       // Add event listeners
+      removeListener($(`[data-chatroom_id = ${data.chatroom_id}]`).find('.delete'));
+      renameListener();
+      submitRename();
       addOrRemListener('add', data.chatroom_id);
       addOrRemListener('remove', data.chatroom_id);
       checkbox('add', $(`#add-users-${data.chatroom_id} .ui.cards>.card>.content`));
       checkbox('remove', $(`#remove-users-${data.chatroom_id} .ui.cards>.card>.content`));
       btnIfCheck('add', data.chatroom_id);
       btnIfCheck('remove', data.chatroom_id);
-      submitRename();
-      renameListener();
+      addRemSubmit('add');
+      addRemSubmit('remove');
+
+      // Reset checkboxes and empty forms for renaming chatrooms
       emptyChatroomNames();
       uncheckAll();
 
@@ -58,9 +65,6 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       if (current_usr_id == data.creator_id) {
         chat_btn.children().last().children().click();
       };
-
-      // Allow chatroom to be removed
-      remove($(`[data-chatroom_id = ${data.chatroom_id}]`).find('.delete'));
 
       // Increase chatroom count
       let chat_length = $('.profile .statistic>.value').eq(0);

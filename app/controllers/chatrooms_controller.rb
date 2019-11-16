@@ -19,7 +19,7 @@ class ChatroomsController < ApplicationController
 		@chatroom.users << current_user
 		if @chatroom.save
 			chatrooms = current_user.chatrooms
-			chatroom_users = @chatroom.users.where('user_id != (?)', current_user.id)
+			chatroom_users = @chatroom.users
 			other_users = User.where('id NOT IN (?)', @chatroom.users.pluck(:id))
 			flash[:success] = 'Chatroom was successfully created'
 			ActionCable.server.broadcast 'chatroom_channel', 	render_chatroom: render_chatroom(@chatroom, 0, chatrooms.length),
@@ -37,7 +37,7 @@ class ChatroomsController < ApplicationController
 			if @chatroom.users.delete(current_user.id)
 				ActionCable.server.broadcast 'option_channel', 	mode: 0,
 																												chatroom_id: @chatroom.id,
-																												chatroom_users: @chatroom.users.pluck(:id).zip(@chatroom.users.pluck(:username))
+																												user_id: current_user.id
 			end
 		else
 			@chatroom.destroy
@@ -53,13 +53,17 @@ class ChatroomsController < ApplicationController
 	end
 
 	def add_users
-		@chatroom.users << @users
-		redirect_to root_path
+		if @chatroom.users << @users
+			redirect_to root_path
+		end
 	end
 
 	def remove_users
-		@chatroom.users.delete(@users)
-		redirect_to root_path
+		if @chatroom.users.delete(@users)
+			ActionCable.server.broadcast 'option_channel',	mode: 3,
+																											chatroom_id: @chatroom.id,
+																											user_ids: @users.pluck(:id);
+		end
 	end
 
 	private

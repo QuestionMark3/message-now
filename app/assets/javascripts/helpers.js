@@ -24,6 +24,7 @@ showMenu = (mode) => {
 
 	$('.edit.button').removeClass('blue');
 	$('.add.button').removeClass('blue');
+	$('.remove.button').removeClass('red');
 };
 
 uncheckAll = () => {
@@ -33,7 +34,7 @@ uncheckAll = () => {
 };
 
 uncheck = form => {
-	form.find(':input').prop("checked", false);
+	form.find(':input').prop('checked', false);
 };
 
 // Checkbox functionality
@@ -51,6 +52,17 @@ checkbox = (mode, element='') => {
 			target.removeAttr('style');
 		};
 	});
+};
+
+removeCheckbox = (mode, chatroom_id, user_id) => {
+	let checkbox = $(`#${mode}-form-${chatroom_id} [for = chatroom_user_ids_${user_id}]`);
+	return checkbox.remove();
+};
+
+addCheckbox = (mode, chatroom_id, checkbox) => {
+	let checkbox_group = $(`#${mode}-form-${chatroom_id}>.field>.fluid.input`);
+	checkbox_group.append(checkbox[0].outerHTML);
+	uncheck($(`#${mode}-form-${chatroom_id}`));
 };
 
 getCardVarsFromName = name => {
