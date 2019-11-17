@@ -21,7 +21,7 @@ scroll_bottom = (animate, elements) => {
 };
 
 // Style messages
-message_style = (current_chatroom) => {
+messageStyle = (current_chatroom) => {
 
 	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
 	let messages = current_chatroom.children();

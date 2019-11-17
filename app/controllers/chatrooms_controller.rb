@@ -54,7 +54,17 @@ class ChatroomsController < ApplicationController
 
 	def add_users
 		if @chatroom.users << @users
-			redirect_to root_path
+			chatrooms = current_user.chatrooms.length
+			chatroom_users = @chatroom.users
+			other_users = User.where('id NOT IN (?)', @chatroom.users.pluck(:id))
+			messages = @chatroom.messages.limit(50).order('id desc')
+			ActionCable.server.broadcast 'option_channel',	mode: 2,
+																											chatroom_id: @chatroom.id,
+																											added_user_ids: @users.pluck(:id),
+																											user_ids: @chatroom.users.pluck(:id),
+																											render_chatroom: render_chatroom(@chatroom, 1, chatrooms),
+																											render_chatroom_options: render_chatroom_users(@chatroom, current_user, chatroom_users, other_users),
+																											messages: render_messages(@chatroom)
 		end
 	end
 
@@ -85,6 +95,10 @@ class ChatroomsController < ApplicationController
 
 	def render_chatroom_users(chatroom, current_user, chatroom_users, other_users)
 		render_to_string(partial: 'chatroom_options', locals: {chatroom: chatroom, current_user: current_user, chatroom_users: chatroom_users, other_users: other_users})
+	end
+
+	def render_messages(chatroom)
+		render_to_string(partial: 'messages/message', collection: chatroom.messages, locals: {messages: chatroom.messages})
 	end
 
 end

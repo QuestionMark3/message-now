@@ -1,3 +1,18 @@
+addUsers = (chatroom_id, added_user_ids, chatroom_user_ids, chatroom, chatroom_options, messages) => {
+	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
+	showMenu(chatroom_id);
+	if ($.inArray(current_usr_id, added_user_ids) >= 0) {
+		newChatroom(chatroom_id, chatroom_user_ids, chatroom, chatroom_options);
+		let message_container = $(`.message-container[data-chatroom_id=${chatroom_id}]`);
+		message_container.append(messages);
+		messageStyle(message_container);
+		return;
+	};
+	added_user_ids.forEach(user_id => {
+		appendUser(chatroom_id, user_id);
+	});
+};
+
 removeUsers = (chatroom_id, user_ids) => {
 	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
 	showMenu(chatroom_id);
@@ -7,6 +22,20 @@ removeUsers = (chatroom_id, user_ids) => {
 	if ($.inArray(current_usr_id, user_ids) >= 0) {
 		remove(chatroom_id);
 	};
+};
+
+appendUser = (chatroom_id, user_id) => {
+	let user_list = $(`.chatroom-users[data-chatroom_id = ${chatroom_id}]`).children('.list');
+	let list_item_HTML = `<h2 class="item header" data-user_id="${user_id}">${idToUsername(user_id)}</h2>`;
+	let rem_cards = $(`#remove-users-${chatroom_id}>.cards`);
+	let add_card = $(`#add-users-${chatroom_id}>.cards>[data-user-id = ${user_id}]`).removeAttr('style');
+	let card_HTML = add_card[0].outerHTML;
+	user_list.append(list_item_HTML);
+	rem_cards.append(card_HTML);
+	add_card.remove();
+	addCheckbox('remove', chatroom_id, removeCheckbox('add', chatroom_id, user_id));
+	checkbox('remove', rem_cards.find(`[data-user-id = ${user_id}]>.content`));
+	btnIfCheck('remove', chatroom_id, user_id);
 };
 
 addOrRemListener = (mode, chatroom_id='') => {

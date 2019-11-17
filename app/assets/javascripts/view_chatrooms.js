@@ -62,7 +62,7 @@ chatroom_btns = ( el=$('.chatroom.card>.content') ) => {
 		setTimeout(() => {
 			let current_chatroom = $(`.message-container[data-chatroom_id = "${chatroom_id}"]`);
 			current_chatroom.fadeIn(500);
-			message_style(current_chatroom);
+			messageStyle(current_chatroom);
 			scroll_bottom(false, $('#messages'));
 		}, 500)
 

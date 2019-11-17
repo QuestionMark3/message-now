@@ -77,7 +77,7 @@ getCardVarsFromName = name => {
 };
 
 idToUsername = (id) => {
-	return $(`h2.chatroom-options[data-chatroom_id = ${id}]`).text();
+	return $(`#users>.cards>.card[data-user-id = ${id}]`).text().trim();
 };
 
 subtractNotif = (chatroom_id) => {

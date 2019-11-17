@@ -9,7 +9,8 @@ App.option = App.cable.subscriptions.create("OptionChannel", {
   			rename(data.chatroom_id, data.new_title);
   			break;
       case 2:
-
+        addUsers( data.chatroom_id,     data.added_user_ids,          data.user_ids,
+                  data.render_chatroom, data.render_chatroom_options, data.messages);
         break;
       case 3:
         removeUsers(data.chatroom_id, data.user_ids);

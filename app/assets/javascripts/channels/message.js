@@ -34,7 +34,7 @@ chat_subscribe = (el) => {
 			current_chatroom.append(data.render_message);
 			
 			// Style message partial further
-			message_style(current_chatroom);
+			messageStyle(current_chatroom);
 
 			// Increment badge notifications if chatroom not open
 			let badge = $(`#chatroom_${data.chatroom_id}_badge`);
