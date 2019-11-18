@@ -76,8 +76,9 @@ new_chatroom_btn = () => {
 
 // Bind 'enter' key to 'submit' button
 submit_chatroom = () => {
-	$('#chatroom_title').on('keydown', (event) => {
+	$('#chatroom_title').on('keydown', event => {
 		if (event.target == document.activeElement && event.which == 13) {
+      event.preventDefault();
 			$('#room-form-0').click();
 			// Clear text field
 			event.target.value = "";

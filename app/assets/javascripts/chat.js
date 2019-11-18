@@ -1,7 +1,8 @@
 // Bind 'enter' key to 'submit' button and clear textfield
 submit_message = () => {
-	$('#message_body').on('keydown', (event) => {
+	$('#message_body').on('keydown', event => {
 		if (event.target == document.activeElement && event.which == 13) {
+			event.preventDefault();
 			$('#msg-form').click();
 			event.target.value = "";
 		};
