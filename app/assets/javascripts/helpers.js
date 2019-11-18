@@ -54,6 +54,16 @@ checkbox = (mode, element='') => {
 	});
 };
 
+deselectUserCards = user_ids => {
+	user_ids.forEach(user_id => deselectUserCard(user_id));
+};
+
+deselectUserCard = user_id => {
+	let parent = $('#users');
+	let card = parent.find(`.cards>.card[data-user-id="${user_id}"]`);
+	card.removeAttr('style');
+};
+
 removeCheckbox = (mode, chatroom_id, user_id) => {
 	let checkbox = $(`#${mode}-form-${chatroom_id} [for = chatroom_user_ids_${user_id}]`);
 	return checkbox.remove();

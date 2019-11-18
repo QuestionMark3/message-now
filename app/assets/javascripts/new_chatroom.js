@@ -36,6 +36,7 @@ newChatroom = (chatroom_id, user_ids, chatroom, chatroom_options) => {
 
     // Reset checkboxes and empty forms for renaming chatrooms
     emptyChatroomNames();
+    deselectUserCards(user_ids);
     uncheckAll();
 
     // Create subscription
