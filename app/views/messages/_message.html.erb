@@ -1,7 +1,7 @@
 <% # Previous message %>
-<% prev_msg = messages.where("id < ?", message.id).last %>
+<% prev_msg = messages.select{|msg| msg.id === message.id - 1}[0] %>
 <% # Time since last messaege %>
-<% msg_offset = message.created_at - prev_msg.created_at if prev_msg %>
+<% msg_offset = prev_msg && message.created_at - prev_msg.created_at %>
 <% datetime = message.created_at %>
 <% # Datetime %>
 <% if !msg_offset || msg_offset >= 1.hour %>

@@ -6,16 +6,16 @@ class ChatroomsController < ApplicationController
 	def index
 		@users = User.all
 		@chatroom = Chatroom.new
-		@chatrooms = current_user.chatrooms
+		@chatrooms = current_user.chatrooms.includes(:users, [messages: :user])
 		@message = Message.new
 		@messages = Message.custom_display
 		unread_arr = ChatroomUser.where(user_id: current_user.id).pluck(:unread)
+		@user_chatrooms = @chatrooms.zip(unread_arr)
 		@total_unread = unread_arr.sum
-		@user_chatrooms = current_user.chatrooms.zip(unread_arr)
 	end
 
 	def create
-		@chatroom = current_user.chatrooms.new(chatroom_params)
+		@chatroom = current_user.chatrooms.new(chatroom_params).include(:users)
 		@chatroom.users << current_user
 		if @chatroom.save
 			chatrooms = current_user.chatrooms
@@ -56,12 +56,13 @@ class ChatroomsController < ApplicationController
 		if @chatroom.users << @users
 			chatrooms = current_user.chatrooms.length
 			chatroom_users = @chatroom.users
-			other_users = User.where('id NOT IN (?)', @chatroom.users.pluck(:id))
+			chatroom_ids = chatroom_users.pluck(:id)
+			other_users = User.where('id NOT IN (?)', chatroom_ids)
 			messages = @chatroom.messages.limit(50).order('id desc')
 			ActionCable.server.broadcast 'option_channel',	mode: 2,
 																											chatroom_id: @chatroom.id,
 																											added_user_ids: @users.pluck(:id),
-																											user_ids: @chatroom.users.pluck(:id),
+																											user_ids: chatroom_ids,
 																											render_chatroom: render_chatroom(@chatroom, 1, chatrooms),
 																											render_chatroom_options: render_chatroom_users(@chatroom, current_user, chatroom_users, other_users),
 																											messages: render_messages(@chatroom)

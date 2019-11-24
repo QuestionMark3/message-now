@@ -72,14 +72,14 @@
 	<div class="ui fluid raised card" id='side-options'>
 	
 		<%= render partial: 'profile', locals: {chatrooms: @chatrooms} %> <!-- Profile -->
-		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users.where('id != (?)', current_user.id)} %> <!-- New chatroom menu -->
+		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users.select{|usr| usr.id != current_user.id}} %> <!-- New chatroom menu -->
 		<%= render partial: 'view_chatrooms', locals: {user_chatrooms: @user_chatrooms, length: @chatrooms.length} %> <!-- View chatrooms menu -->
 
 		<!-- Chatroom Users -->
 		<% @chatrooms.each do |chatroom| %>
 			<%= render partial: 'chatroom_options', locals: { chatroom: chatroom,
-																									chatroom_users: chatroom.users.where('user_id != (?)', current_user.id),
-																										 other_users: @users.where('id NOT IN (?)', chatroom.users.pluck(:id))} %>
+																									chatroom_users: chatroom.users.select{|usr| usr.id != current_user.id},
+																										 other_users: @users.select{|usr| chatroom.users.pluck(:id).include?(usr)}} %>
 		<% end %>
 		<!-- /Chatroom Users -->
 
@@ -93,7 +93,7 @@
 
 		  <a class="ui button" id="view">
 		  	<i class="building icon"></i>
-		  	<% if @total_unread === 0 %>
+		  	<% if @total_unread == 0 %>
 					<% disp = 'none' %>
 				<% else %>
 					<% disp = 'block' %>
