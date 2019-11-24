@@ -2,7 +2,7 @@
 <% disp = (unread === 0) ? 'none' : 'block' %>
 <% orientation = (length === chatroom.id || length === chatroom.id+1) ? 'bottom' : 'top' %>
 
-<!-- Chatroom -->
+<%# Chatroom %>
 <div class="chatroom card" data-chatroom_id="<%= chatroom.id %>">
 	<div unselectable="on" class="content">
 		<i class="tv icon"></i>
@@ -21,4 +21,4 @@
 
 	</div>
 </div>
-<!-- /Chatroom -->
+<%# /Chatroom %>

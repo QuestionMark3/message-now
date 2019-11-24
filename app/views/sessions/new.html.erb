@@ -1,27 +1,27 @@
-<!-- Title -->
+<%# Title %>
 <h1 align="center">
 	Welcome to Message Now
 </h1>
-<!-- /Title -->
+<%# /Title %>
 
-<!-- Icon -->
+<%# Icon %>
 <h4 class="ui center aligned medium icon header">
   <i class="circular inverted blue address card icon"></i>
   Log in to continue
 </h4>
-<!-- /Icon -->
+<%# /Icon %>
 
-<!-- Panel -->
+<%# Panel %>
 <div class="ui placeholder segment">
 	
-	<!-- Content -->
+	<%# Content %>
   <div class="ui two column very relaxed stackable grid">
 
-		<!-- Login form -->
+		<%# Login form %>
     <div class="column">
     <%= form_for(:session, html: {class: "ui form", role: "form"}, url: login_path) do |f| %>
   		
-			<!-- Username -->
+			<%# Username %>
       <div class="field">
         <%= f.label :username, "Username" %>
         <div class="ui left icon input">
@@ -29,9 +29,9 @@
           <i class="user icon"></i>
         </div>
       </div>
-      <!-- /Username -->
+      <%# /Username %>
 
-			<!-- Password -->
+			<%# Password %>
       <div class="field">
         <%= f.label :password, "Password" %>
         <div class="ui left icon input">
@@ -39,42 +39,42 @@
           <i class="lock icon"></i>
         </div>
       </div>
-      <!-- /Password -->
+      <%# /Password %>
 
-      <!-- Login button -->
+      <%# Login button %>
       <%= f.button class: "ui blue submit button" do %>
         <i class="sign-in icon"></i>
         Login
       <% end %>
-      <!-- /Login button -->
+      <%# /Login button %>
 
     <% end %>
     </div>
-    <!-- /Login form -->
+    <%# /Login form %>
 		
-    <!-- Workaround for Semantic-UI bug #6637 -->
+    <%# Workaround for Semantic-UI bug #6637 %>
     <div class="ui horizontal divider" id="horizontal-divider" style="display:none">
       Or
     </div>
-    <!-- /Workaround for Semantic-UI bug #6637 -->
+    <%# /Workaround for Semantic-UI bug #6637 %>
 
-		<!-- Sign up button -->
+		<%# Sign up button %>
     <div class="middle aligned column">
 		<%= link_to signup_path, class: "ui big blue button" do %>
 			<i class="user plus icon"></i>
 			Sign Up
 		<% end %>
     </div>
-    <!-- /Sign up button -->
+    <%# /Sign up button %>
 
   </div>
-  <!-- /Content -->
+  <%# /Content %>
 
-	<!-- Divider -->
+	<%# Divider %>
   <div class="ui vertical divider" id="divider">
     Or
   </div>
-  <!-- /Divider -->
+  <%# /Divider %>
 
 </div>
-<!-- /Panel -->
+<%# /Panel %>

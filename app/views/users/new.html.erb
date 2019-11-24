@@ -1,7 +1,7 @@
-<!-- Segment -->
+<%# Segment %>
 <div class="ui one column stackable page centered grid">
 
-  <!-- Title -->
+  <%# Title %>
   <h1 id="header">Create a new account</h1>
   <div class="ui row">
   <span class="ui center aligned medium icon header">
@@ -9,35 +9,35 @@
     Sign up
   </span>
   </div>
-  <!-- /Title -->
+  <%# /Title %>
 
-  <!-- Form -->
+  <%# Form %>
   <div class="ui row">
   <div class="column twelve wide">
   <div class="ui segment">
   <%= form_for(@user, :html => {class: "ui big form"}, remote: true) do |f| %>
 
-  	<!-- Username -->
+  	<%# Username %>
     <div class="required field">
       <%= f.label :username, "Username" %>
       <%= f.text_field :username, placeholder: "Username", autofocus: "true" %>
     </div>
-    <!-- /Username -->
+    <%# /Username %>
 
-  	<!-- Password -->
+  	<%# Password %>
     <div class="required field">
       <%= f.label :password, "Password" %>
       <%= f.password_field :password, placeholder: "Password" %>
     </div>
-    <!-- /Password -->
+    <%# /Password %>
 
-    <%= f.submit "Sign Up", class: "ui big primary button" %> <!-- Submit -->
+    <%= f.submit "Sign Up", class: "ui big primary button" %> <%# Submit %>
 
   <% end %>
   </div>
   </div>
   </div>
-  <!-- /Form -->
+  <%# /Form %>
 
 </div>
-<!-- /Segment -->
+<%# /Segment %>

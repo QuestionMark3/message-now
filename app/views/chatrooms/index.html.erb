@@ -1,19 +1,19 @@
-<!-- Chatroom title -->
+<%# Chatroom title %>
 <h1 class="ui center aligned huge header" id="chatroom-header">
   Message
   <i class="blue fitted comment alternate icon"></i>
   Now!
 </h1>
-<!-- /Chatroom title -->
+<%# /Chatroom title %>
 
-<!-- Chatroom Body -->
+<%# Chatroom Body %>
 <div class="ui two column stackable grid">
 
-	<!-- Feed -->
+	<%# Feed %>
 	<div class="twelve wide column">
 	<div class="ui fluid raised card" id="chatbox">
 
-		<!-- Main content -->
+		<%# Main content %>
 		<div class="content" id="messages">
 		<% @chatrooms.each do |chatroom| %>
 
@@ -25,9 +25,9 @@
 
 		<% end %>
 		</div>
-		<!-- /Main content -->
+		<%# /Main content %>
 
-		<!-- Form -->
+		<%# Form %>
 		<div class="extra content">
 		<%= form_for(@message, 	html: {class: "ui reply form" , role: "form"},
 														url: message_path,
@@ -45,9 +45,9 @@
 			</div>
 		<% end %>
 		</div>
-		<!-- /Form -->
+		<%# /Form %>
 
-		<!-- Dimmer -->
+		<%# Dimmer %>
 		<div class="ui active dimmer" id="dimmer">
 		<div class="content">
 		<h2 class="ui inverted icon header">
@@ -61,29 +61,29 @@
 		</h2>
 		</div>
 		</div>
-		<!-- /Dimmer -->
+		<%# /Dimmer %>
 
 	</div>
 	</div>
-	<!-- /Feed -->
+	<%# /Feed %>
 
-	<!-- Verticle menu options -->
+	<%# Verticle menu options %>
 	<div class="four wide column">
 	<div class="ui fluid raised card" id='side-options'>
 	
-		<%= render partial: 'profile', locals: {chatrooms: @chatrooms} %> <!-- Profile -->
-		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users.select{|usr| usr.id != current_user.id}} %> <!-- New chatroom menu -->
-		<%= render partial: 'view_chatrooms', locals: {user_chatrooms: @user_chatrooms, length: @chatrooms.length} %> <!-- View chatrooms menu -->
+		<%= render partial: 'profile', locals: {chatrooms: @chatrooms} %> <%# Profile %>
+		<%= render partial: 'new_chatroom', locals: {chatroom: @chatroom, users: @users.select{|usr| usr.id != current_user.id}} %> <%# New chatroom menu %>
+		<%= render partial: 'view_chatrooms', locals: {user_chatrooms: @user_chatrooms, length: @chatrooms.length} %> <%# View chatrooms menu %>
 
-		<!-- Chatroom Users -->
+		<%# Chatroom Users %>
 		<% @chatrooms.each do |chatroom| %>
 			<%= render partial: 'chatroom_options', locals: { chatroom: chatroom,
 																									chatroom_users: chatroom.users.select{|usr| usr.id != current_user.id},
 																										 other_users: @users.select{|usr| chatroom.users.pluck(:id).include?(usr)}} %>
 		<% end %>
-		<!-- /Chatroom Users -->
+		<%# /Chatroom Users %>
 
-		<!-- Actions -->
+		<%# Actions %>
 		<div class="ui fluid blue vertical buttons" id="actions">
 
 		  <a class="ui button" id="new">
@@ -103,14 +103,14 @@
 		  </a>
 
 		</div>
-		<!-- /Actions -->
+		<%# /Actions %>
 
 	</div>
 	</div>
-	<!-- /Verticle menu options -->
+	<%# /Verticle menu options %>
 
 </div>
-<!-- /Chatroom body -->
+<%# /Chatroom body %>
 
-<!-- Hidden data -->
+<%# Hidden data %>
 <span id="hidden-user-id" data-user_id="<%= current_user.id %>"></span>

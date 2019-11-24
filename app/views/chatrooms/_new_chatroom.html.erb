@@ -7,16 +7,16 @@
 																											 users: users,
 																									text_field: true} %>
 
-<!-- Users -->
+<%# Users %>
 <div class="content new-action" id="users">
 <div class="ui cards">
 <% users.each do |user| %>
 
-	<!-- User -->
+	<%# User %>
 	<%= render partial: 'users/user_card', locals: {user: user} %>
-	<!-- /User -->
+	<%# /User %>
 
 <% end %>
 </div>
 </div>
-<!-- /Users -->
+<%# /Users %>

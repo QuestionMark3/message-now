@@ -1,44 +1,44 @@
-<!-- Header -->
+<%# Header %>
 <div class="header item">
   <b>Message</b>
   <i class="fitted comment alternate icon"></i>
   <b>Now</b>
 </div>
-<!-- /Header -->
+<%# /Header %>
 
-<!-- Right hand options -->
+<%# Right hand options %>
 <div class="right menu">
 
-  <!-- Session options -->
+  <%# Session options %>
   <% if logged_in? %>
 
-    <!-- Logout -->
+    <%# Logout %>
     <div class="item">
       <%= link_to "Log out", logout_path, method: :delete, class: "ui inverted grey button" %>
     </div>
-    <!-- /Logout -->
+    <%# /Logout %>
 
   <% else %>
 
     <% current_url = request.env['PATH_INFO'] %>
      
-    <!-- Log in button -->
+    <%# Log in button %>
     <% if current_url == '/signup' %>
       <div class="item">
       <%= link_to "Log in", login_path, class: "ui inverted grey button" %>
       </div>
-    <!-- /Log in button -->
+    <%# /Log in button %>
     
-    <!-- Sign up button -->
+    <%# Sign up button %>
     <% else %>
       <div class="item">
       <%= link_to "Sign up", signup_path, class: "ui inverted grey button" %> 
       </div>
     <% end %>
-    <!-- /Sign up button -->
+    <%# /Sign up button %>
 
   <% end %>
-  <!-- /Session options -->
+  <%# /Session options %>
 
 </div>
-<!-- /Right hand options -->
+<%# /Right hand options %>
