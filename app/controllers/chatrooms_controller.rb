@@ -1,6 +1,6 @@
 class ChatroomsController < ApplicationController
 	before_action :require_user
-	before_action :set_chatroom, except: [:index, :create]
+	before_action :set_chatroom, except: [:index, :create, :add_users]
 	before_action :set_add_rem_users, only: [:add_users, :remove_users]
 
 	def index
@@ -15,7 +15,7 @@ class ChatroomsController < ApplicationController
 	end
 
 	def create
-		@chatroom = current_user.chatrooms.new(chatroom_params).include(:users)
+		@chatroom = current_user.chatrooms.new(chatroom_params)
 		@chatroom.users << current_user
 		if @chatroom.save
 			chatrooms = current_user.chatrooms
@@ -53,6 +53,7 @@ class ChatroomsController < ApplicationController
 	end
 
 	def add_users
+		@chatroom = Chatroom.includes(:users, :messages).find(params[:format])
 		if @chatroom.users << @users
 			chatrooms = current_user.chatrooms.length
 			chatroom_users = @chatroom.users

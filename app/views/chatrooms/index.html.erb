@@ -79,7 +79,7 @@
 		<% @chatrooms.each do |chatroom| %>
 			<%= render partial: 'chatroom_options', locals: { chatroom: chatroom,
 																									chatroom_users: chatroom.users.select{|usr| usr.id != current_user.id},
-																										 other_users: @users.select{|usr| chatroom.users.pluck(:id).include?(usr)}} %>
+																										 other_users: @users.select{|usr| !chatroom.users.pluck(:id).include?(usr.id)}} %>
 		<% end %>
 		<%# /Chatroom Users %>
 
