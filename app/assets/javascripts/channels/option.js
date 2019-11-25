@@ -10,10 +10,12 @@ App.option = App.cable.subscriptions.create("OptionChannel", {
   			break;
       case 2:
         addUsers( data.chatroom_id,     data.added_user_ids,          data.user_ids,
-                  data.render_chatroom, data.render_chatroom_options, data.messages);
+                  data.render_chatroom, data.render_chatroom_options, data.messages,
+                  data.other_count);
         break;
       case 3:
-        removeUsers(data.chatroom_id, data.user_ids);
+        removeUsers(data.chatroom_id, data.user_ids,
+                    data.chat_count,  data.total_count);
         break;
   	};
   }

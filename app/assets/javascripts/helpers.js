@@ -27,6 +27,34 @@ showMenu = (mode) => {
 	$('.remove.button').removeClass('red');
 };
 
+enableBtn = btn => {
+	btn.removeClass('disabled');
+};
+
+disableBtn = btn => {
+	btn.addClass('disabled');
+};
+
+enableAdd = chatroom_id => {
+	let btn = $(`[data-chatroom_id = ${chatroom_id}]>.add.button`);
+	enableBtn(btn);
+};
+
+enableRem = chatroom_id => {
+	let btn = $(`[data-chatroom_id = ${chatroom_id}]>.remove.button`);
+	enableBtn(btn);
+};
+
+disableAdd = chatroom_id => {
+	let btn = $(`[data-chatroom_id = ${chatroom_id}]>.add.button`);
+	disableBtn(btn);
+};
+
+disableRem = chatroom_id => {
+	let btn = $(`[data-chatroom_id = ${chatroom_id}]>.remove.button`);
+	disableBtn(btn);
+};
+
 uncheckAll = () => {
 	uncheck($('.chatroom-form'));
 	uncheck($('.add-form'));
@@ -35,6 +63,11 @@ uncheckAll = () => {
 
 uncheck = form => {
 	form.find(':input').prop('checked', false);
+};
+
+anyChecks = (form) => {
+	let checks = (form.find('.checkbox:checked').length === 0) ? false : true;
+	return checks;
 };
 
 // Checkbox functionality

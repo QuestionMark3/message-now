@@ -1,4 +1,4 @@
-addUsers = (chatroom_id, added_user_ids, chatroom_user_ids, chatroom, chatroom_options, messages) => {
+addUsers = (chatroom_id, added_user_ids, chatroom_user_ids, chatroom, chatroom_options, messages, other_count) => {
 	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
 	showMenu(chatroom_id);
 	if ($.inArray(current_usr_id, added_user_ids) >= 0) {
@@ -6,22 +6,22 @@ addUsers = (chatroom_id, added_user_ids, chatroom_user_ids, chatroom, chatroom_o
 		let message_container = $(`.message-container[data-chatroom_id=${chatroom_id}]`);
 		message_container.append(messages);
 		messageStyle(message_container);
-		return;
+	}
+	else {
+		added_user_ids.forEach(user_id => {appendUser(chatroom_id, user_id)});
 	};
-	added_user_ids.forEach(user_id => {
-		appendUser(chatroom_id, user_id);
-	});
+	let chat_count = chatroom_user_ids.length;
+	if (other_count == 0) {disableAdd(chatroom_id)};
+	if (chat_count > 1) {enableRem(chatroom_id)};
 };
 
-removeUsers = (chatroom_id, user_ids) => {
+removeUsers = (chatroom_id, user_ids, chat_count, total_count) => {
 	let current_usr_id = Number($('#hidden-user-id').data('user_id'));
 	showMenu(chatroom_id);
-	user_ids.forEach(user_id => {
-		leave(chatroom_id, user_id);
-	});
-	if ($.inArray(current_usr_id, user_ids) >= 0) {
-		remove(chatroom_id);
-	};
+	user_ids.forEach(user_id => {leave(chatroom_id, user_id)});
+	if ($.inArray(current_usr_id, user_ids) >= 0) {remove(chatroom_id)};
+	if (chat_count === 1) {disableRem(chatroom_id)};
+	if (total_count - chat_count > 0) {enableAdd(chatroom_id)};
 };
 
 appendUser = (chatroom_id, user_id) => {
@@ -86,11 +86,6 @@ btnIfCheck = (mode, chatroom_id='', user_id='') => {
 		let confirm = $(`#${mode}-confirm-${chatroom_id}`);
 		confirm.toggle(anyChecks(form));
 	});
-};
-
-anyChecks = (form) => {
-	let checks = (form.find('.checkbox:checked').length === 0) ? false : true;
-	return checks;
 };
 
 showAddOrRemMenu = (chatroom_id, mode) => {

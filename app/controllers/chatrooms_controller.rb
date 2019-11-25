@@ -66,7 +66,8 @@ class ChatroomsController < ApplicationController
 																											user_ids: chatroom_ids,
 																											render_chatroom: render_chatroom(@chatroom, 1, chatrooms),
 																											render_chatroom_options: render_chatroom_users(@chatroom, current_user, chatroom_users, other_users),
-																											messages: render_messages(@chatroom)
+																											messages: render_messages(@chatroom),
+																											other_count: other_users.count
 		end
 	end
 
@@ -74,7 +75,9 @@ class ChatroomsController < ApplicationController
 		if @chatroom.users.delete(@users)
 			ActionCable.server.broadcast 'option_channel',	mode: 3,
 																											chatroom_id: @chatroom.id,
-																											user_ids: @users.pluck(:id);
+																											user_ids: @users.pluck(:id),
+																											chat_count: @chatroom.users.count,
+																											total_count: User.count
 		end
 	end
 
